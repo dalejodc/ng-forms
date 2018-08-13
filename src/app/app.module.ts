@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MaterializeModule } from 'angular2-materialize';
+// import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 
 import { AppComponent } from './app.component';
@@ -10,7 +12,9 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MaterializeModule,
+    // SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]
