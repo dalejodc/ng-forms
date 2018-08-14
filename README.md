@@ -1,27 +1,11 @@
-# MyApp
+# Angular 5 + MaterializeCSS
+Proyecto inicial de Angular 5 + MaterializeCSS + jQuery + Material Design Icons + SweetAlert2 + Animated.css 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+## Descargar o clonar el proyecto
 
-## Development server
+Luego de descargar el proyecto, ejecutar `npm install` para descargar todas las dependencias del proyecto. En algunas ocasiones es necesario ejecutar el comando con los permisos de Administrador.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Ejecutar la aplicación
 
-## Code scaffolding
+Ejecutar `ng serve -o` para correr la aplicación. Con el comando anterior, la aplicación se abrirá en una pestaña del navegador predeterminado. O navegar a `http://localhost:4200/`. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
