@@ -1,20 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'angular2-materialize';
-// import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
+import { APP_ROUTING } from './app.routes';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     MaterializeModule,
-    // SweetAlert2Module
+    APP_ROUTING
   ],
   providers: [],
   bootstrap: [AppComponent]
