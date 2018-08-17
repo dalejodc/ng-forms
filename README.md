@@ -1,5 +1,5 @@
-# Angular 5 + MaterializeCSS
-Proyecto inicial de Angular 5 + MaterializeCSS + jQuery + Material Design Icons + SweetAlert2 + Animated.css 
+# Angular 6 + MaterializeCSS
+Proyecto inicial de Angular 6 + MaterializeCSS + jQuery + Material Design Icons + SweetAlert2 + Animated.css 
 
 ## Descargar o clonar el proyecto
 
