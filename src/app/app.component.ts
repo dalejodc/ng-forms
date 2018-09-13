@@ -15,18 +15,6 @@ export class AppComponent {
 	){}
 
   ngOnInit(){
-  	console.log("Alert");
   	
-    const toast = swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
-
-  toast({
-    type: 'success',
-    title: 'SweetAlert'
-  })
 	}
 }

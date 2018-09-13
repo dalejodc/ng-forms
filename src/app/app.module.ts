@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterializeModule } from 'angular2-materialize';
 
 import { APP_ROUTING } from './app.routes';
 
@@ -15,7 +14,6 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     BrowserModule,
-    MaterializeModule,
     APP_ROUTING
   ],
   providers: [],
