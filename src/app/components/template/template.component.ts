@@ -14,7 +14,7 @@ export class TemplateComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
-
+		$('.ui.checkbox').checkbox();
 	}
 
 	save(tryForm:NgForm){
