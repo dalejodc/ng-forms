@@ -5,11 +5,11 @@
 
 
 <form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form">
+
 	<div class="field">
 		<label>Name</label>
 		<input type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required minlength="5" #name="ngModel">
-		<div class="ui negative message">
-			<i class="close icon" (click)="close()"></i>
+		<div class="ui negative message" *ngIf="name.status != 'VALID'">
 			<div class="header">
 				We're sorry we can't apply that discount
 			</div>
@@ -20,20 +20,42 @@
 		</div>
 		
 	</div>
+
 	<div class="field">
 		<label>Username</label>
-		<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="5">
+		<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">
+		<div class="ui negative message" *ngIf="username.status != 'VALID'">
+			<div class="header">
+				We're sorry we can't apply that discount
+			</div>
+			<ul>
+				<li *ngIf="username.errors?.required">This field is required</li>
+				<li *ngIf="username.errors?.minlength"> Min length {{name.errors.minlength.requiredLength}}</li>
+			</ul>
+		</div>
 	</div>
+
 	<div class="field">
 		<label>E-mail</label>
-		<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+		<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #email="ngModel">
+
+		<div class="ui negative message" *ngIf="email.status != 'VALID'">
+			<div class="header">
+				We're sorry we can't apply that discount
+			</div>
+			<ul>
+				<li *ngIf="email.errors?.required">Write a valid email.</li>
+			</ul>
+		</div>
 	</div>
+
 	<div class="field">
 		<div class="ui checkbox">
 			<input type="checkbox" tabindex="0" class="hidden">
 			<label>I agree to the Terms and Conditions</label>
 		</div>
 	</div>
+
 	<button class="ui button" type="submit">Submit</button>
 	 <div class="ui error message"></div>
 </form>

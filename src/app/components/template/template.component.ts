@@ -47,15 +47,4 @@ export class TemplateComponent implements OnInit {
 		console.log(this.user);
 	}
 
-	close(){
-		$('.message .close')
-		.on('click', function() {
-			$(this)
-			.closest('.message')
-			.transition('fade')
-			;
-		})
-		;
-	}
-
 }
