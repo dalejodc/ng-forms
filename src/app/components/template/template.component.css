@@ -1,0 +1,9 @@
+.ng-invalid.ng-touched:not(form){ 
+	background: #FFF6F6;
+	border-color: #E0B4B4;
+	color: #9F3A38 !important;
+	-webkit-appearance: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+

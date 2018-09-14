@@ -4,14 +4,29 @@
 </h1>
 
 
-<form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form" novalidate="" >
+<form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form">
 	<div class="field">
-		<label>First Name</label>
-		<input type="text" name="first-name" placeholder="First Name">
+		<label>Name</label>
+		<input type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required minlength="5" #name="ngModel">
+		<div class="ui negative message">
+			<i class="close icon" (click)="close()"></i>
+			<div class="header">
+				We're sorry we can't apply that discount
+			</div>
+			<ul>
+				<li *ngIf="name.errors?.required">This field is required</li>
+				<li *ngIf="name.errors?.minlength"> Min length {{name.errors.minlength.requiredLength}}</li>
+			</ul>
+		</div>
+		
 	</div>
 	<div class="field">
-		<label>Last Name</label>
-		<input type="text" name="last-name" placeholder="Last Name">
+		<label>Username</label>
+		<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="5">
+	</div>
+	<div class="field">
+		<label>E-mail</label>
+		<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
 	</div>
 	<div class="field">
 		<div class="ui checkbox">
@@ -20,32 +35,8 @@
 		</div>
 	</div>
 	<button class="ui button" type="submit">Submit</button>
+	 <div class="ui error message"></div>
 </form>
 
-<button class="ui button primary" (click)="showModal()">Modal</button>
 
-<div class="ui modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Profile Picture
-  </div>
-  <div class="image content">
-    <div class="ui medium image">
-      <img src="/images/avatar/large/chris.jpg">
-    </div>
-    <div class="description">
-      <div class="ui header">We've auto-chosen a profile image for you.</div>
-      <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-      <p>Is it okay to use this photo?</p>
-    </div>
-  </div>
-  <div class="actions">
-    <div class="ui black deny button">
-      Nope
-    </div>
-    <div class="ui positive right labeled icon button">
-      Yep, that's me
-      <i class="checkmark icon"></i>
-    </div>
-  </div>
-</div>
+
