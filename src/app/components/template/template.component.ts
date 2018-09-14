@@ -10,6 +10,11 @@ export class TemplateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  	
+  }
+
+  save(){
+  	console.log("Post");
   }
 
 }

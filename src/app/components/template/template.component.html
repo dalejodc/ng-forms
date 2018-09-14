@@ -1,17 +1,19 @@
 <h1 class="ui header">Angular Forms</h1>
-<div class="ui form">
-	<div class="fields">
-		<div class="field">
-			<label>First names</label>
-			<input type="text" placeholder="First Name">
-		</div>
-		<div class="field">
-			<label>Middle name</label>
-			<input type="text" placeholder="Middle Name">
-		</div>
-		<div class="field">
-			<label>Last name</label>
-			<input type="text" placeholder="Last Name">
+
+<form  (ngSubmit)="save()" class="ui form" novalidate="" >
+	<div class="field">
+		<label>First Name</label>
+		<input type="text" name="first-name" placeholder="First Name">
+	</div>
+	<div class="field">
+		<label>Last Name</label>
+		<input type="text" name="last-name" placeholder="Last Name">
+	</div>
+	<div class="field">
+		<div class="ui checkbox">
+			<input type="checkbox" tabindex="0" class="hidden">
+			<label>I agree to the Terms and Conditions</label>
 		</div>
 	</div>
-</div>
+	<button class="ui button" type="submit">Submit</button>
+</form>

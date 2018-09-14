@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 
 import { APP_ROUTING } from './app.routes';
 
@@ -18,6 +19,7 @@ import { DataComponent } from './components/data/data.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     APP_ROUTING
   ],
   providers: [],
