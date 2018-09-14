@@ -24,12 +24,13 @@
               "src/styles.css",
               "node_modules/material-design-icons/iconfont/material-icons.css",
               "node_modules/animate.css/animate.css",
-              "node_modules/sweetalert2/dist/sweetalert2.css"
+              "node_modules/sweetalert2/dist/sweetalert2.css",
+              "node_modules/semantic-ui-css/semantic.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
+              "node_modules/semantic-ui-css/semantic.js",
               "node_modules/hammerjs/hammer.js",
-              "node_modules/materialize-css/dist/js/materialize.js",
               "node_modules/sweetalert2/dist/sweetalert2.js"
             ]
           },
