@@ -37,13 +37,17 @@
 	 <div class="ui error message"></div>
 </form>
 
+<!-- Validated form -->
+
 <h2 class="ui header">Validated form.</h2>
 <p>The second example shows a validated form. You must write the correct text in the fields, and the form must be sent. If the text is not correct, the form can not be sent.</p>
 <form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form">
 
 	<div class="field">
-		<label>Name</label>
-		<input type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required minlength="5" #name="ngModel">
+		<div [ngClass]="{'field error': (name.touched && !name.valid)}"> 
+			<label>Name</label>
+			<input type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required minlength="5" #name="ngModel">
+		</div>
 		<div class="ui negative message" *ngIf="(!name.valid && name.touched)">
 			<div class="header">
 				Error in name field!
@@ -57,8 +61,10 @@
 	</div>
 
 	<div class="field">
-		<label>Username</label>
-		<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">
+		<div [ngClass]="{'field error': (!username.valid && username.touched)}">
+			<label>Username</label>
+			<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">
+		</div>
 		<div class="ui negative message" *ngIf="(!username.valid && username.touched)">
 			<div class="header">
 				Error in username field!
@@ -71,8 +77,10 @@
 	</div>
 
 	<div class="field">
-		<label>E-mail</label>
-		<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #email="ngModel">
+		<div [ngClass]="{'field error': (!email.valid && email.touched)}">
+			<label>E-mail</label>
+			<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #email="ngModel">
+		</div>
 
 		<div class="ui negative message" *ngIf="(!email.valid && email.touched)">
 			<div class="header">
