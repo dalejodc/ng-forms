@@ -1,82 +1,96 @@
 <div class="ui container padding">
 
-<!-- Validated form -->
-<h1 class="ui header centered align">
-  Validated form.
-  <div class="sub header">Template aproximation</div>
-</h1>
-<p>The second example shows a validated form. You must write the correct text in the fields, and the form must be sent. If the text is not correct, the form can not be sent.</p>
-<form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form">
+	<!-- Validated form -->
+	<h1 class="ui header centered align">
+		Validated form
+		<div class="sub header">Template aproximation</div>
+	</h1>
+	<p>The second example shows a validated form. You must write the correct text in the fields, and the form must be sent. If the text is not correct, the form can not be sent.</p>
+	<form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form">
 
-	<div class="three fields">
-		<div class="field">
-			<div [ngClass]="{'field error': (name.touched && !name.valid)}"> 
-				<label class="bold">Name <span class="required">*</span></label>
-				<input 
-				type="text" 
-				name="name" 
-				[(ngModel)]="user.name" 
-				placeholder="Name" 
-				required 
-				minlength="5" 
-				#name="ngModel"
-				pattern="[a-zA-Z\s]+">
-			</div>
-			<div class="ui negative message" *ngIf="(!name.valid && name.touched)">
-				<div class="header">
-					Error in name field!
+		<div class="three fields">
+			<div class="field">
+				<div [ngClass]="{'field error': (name.touched && !name.valid)}"> 
+					<label class="bold">Name <span class="required">*</span></label>
+					<input 
+					type="text" 
+					name="name" 
+					[(ngModel)]="user.name" 
+					placeholder="Name" 
+					required 
+					minlength="5" 
+					#name="ngModel"
+					pattern="[a-zA-Z\s]+">
 				</div>
-				<ul>
-					<li *ngIf="name.errors?.required">This field is required</li>
-					<li *ngIf="name.errors?.minlength"> Min length {{name.errors.minlength.requiredLength}}</li>
-					<li *ngIf="name.errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
-				</ul>
+				<div class="ui negative message" *ngIf="(!name.valid && name.touched)">
+					<div class="header">
+						Error in name field!
+					</div>
+					<ul>
+						<li *ngIf="name.errors?.required">This field is required</li>
+						<li *ngIf="name.errors?.minlength"> Min length {{name.errors.minlength.requiredLength}}</li>
+						<li *ngIf="name.errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
+					</ul>
+				</div>
 			</div>
+
+			<div class="field">
+				<div [ngClass]="{'field error': (!username.valid && username.touched)}">
+					<label  class="bold">Username <span class="required">*</span></label>
+					<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">
+				</div>
+				<div class="ui negative message" *ngIf="(!username.valid && username.touched)">
+					<div class="header">
+						Error in username field!
+					</div>
+					<ul>
+						<li *ngIf="username.errors?.required">This field is required</li>
+						<li *ngIf="username.errors?.minlength"> Min length {{name.errors?.minlength.requiredLength}}</li>
+					</ul>
+				</div>
+			</div>
+			<div class="field">
+				<div [ngClass]="{'field error': (!email.valid && email.touched)}">
+					<label class="bold">E-mail <span class="required">*</span></label>
+					<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #email="ngModel">
+				</div>
+
+				<div class="ui negative message" *ngIf="(!email.valid && email.touched)">
+					<div class="header">
+						Error in email field!
+					</div>
+					<ul>
+						<li *ngIf="email.errors?.required">Write a email.</li>
+						<li *ngIf="email.errors?.pattern">You have to write a valid email.</li>
+					</ul>
+				</div>
+			</div>
+
 		</div>
 
 		<div class="field">
-			<div [ngClass]="{'field error': (!username.valid && username.touched)}">
-				<label  class="bold">Username <span class="required">*</span></label>
-				<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">
+			<div class="ui checkbox">
+				<input type="checkbox" tabindex="0" class="hidden" id="1" (change)="onCheckboxChange(1,$event)" required>
+				<label>I agree to the Terms and Conditions</label>
 			</div>
-			<div class="ui negative message" *ngIf="(!username.valid && username.touched)">
+			<div class="ui negative message" *ngIf="errorMessage">
 				<div class="header">
-					Error in username field!
+					You have to check te box!.
 				</div>
-				<ul>
-					<li *ngIf="username.errors?.required">This field is required</li>
-					<li *ngIf="username.errors?.minlength"> Min length {{name.errors?.minlength.requiredLength}}</li>
-				</ul>
-			</div>
-		</div>
-		<div class="field">
-			<div [ngClass]="{'field error': (!email.valid && email.touched)}">
-				<label class="bold">E-mail <span class="required">*</span></label>
-				<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #email="ngModel">
 			</div>
 
-			<div class="ui negative message" *ngIf="(!email.valid && email.touched)">
-				<div class="header">
-					Error in email field!
-				</div>
-				<ul>
-					<li *ngIf="email.errors?.required">Write a email.</li>
-					<li *ngIf="email.errors?.pattern">You have to write a valid email.</li>
-				</ul>
-			</div>
 		</div>
-		
+
+		<button class="ui button green" type="submit" [disabled]="!tryForm.valid">Submit</button>
+
+	</form>
+	<div class="ui success message" *ngIf="successMessage">
+		<i class="close icon" (click)="close()"></i>
+		<div class="header">
+			Your request was sent.
+		</div>
+		<p>The request could be sent until all the fields are correct.</p>
 	</div>
-
-	<div class="field">
-		<div class="ui checkbox">
-			<input type="checkbox" tabindex="0" class="hidden" id="1" (change)="onCheckboxChange(1,$event)" required>
-			<label>I agree to the Terms and Conditions</label>
-		</div>
-	</div>
-
-	<button class="ui button green" type="submit" [disabled]="!tryForm.valid">Submit</button>
-</form>
 </div>
 
 <style type="text/css">
