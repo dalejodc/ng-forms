@@ -79,7 +79,8 @@
 				Error in email field!
 			</div>
 			<ul>
-				<li *ngIf="email.errors?.required">Write a valid email.</li>
+				<li *ngIf="email.errors?.required">Write a email.</li>
+				<li *ngIf="email.errors?.pattern">You have to write a valid email.</li>
 			</ul>
 		</div>
 	</div>
