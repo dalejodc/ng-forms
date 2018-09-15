@@ -18,9 +18,11 @@ export class TemplateComponent implements OnInit {
 		name: null,
 		username: null,
 		email:null
+		accepted: false;
 	}
 
 	toast:any;
+	checkedBox: boolean = false;
 
 	ngOnInit() {
 		$('.ui.checkbox').checkbox();
@@ -39,18 +41,28 @@ export class TemplateComponent implements OnInit {
 	save(tryForm?:NgForm){
 		console.log('Complete form:',tryForm);
 
-		if(tryForm.valid){
+		if(tryForm.valid && this.user.accepted){
 			this.toast({
-			type: 'success',
-			title: 'Must be sent!'
+				type: 'success',
+				title: 'Must be sent!'
 			})
 		}else{
 			this.toast({
-			type: 'error',
-			title: 'Error in the form!'
+				type: 'error',
+				title: 'Error in the form!'
 			})
 		}
 		console.log(this.user);
 	}
+
+	onCheckboxChange(id, event) {
+		if(event.target.checked) { 
+			console.log('Acepted');
+			this.user.accepted = true;
+		} else {
+			this.user.accepted = false;
+		}
+	}
+}
 
 }

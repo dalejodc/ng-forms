@@ -17,7 +17,8 @@
 				name="name" 
 				[(ngModel)]="user.name" 
 				placeholder="Name" 
-				required minlength="5" 
+				required 
+				minlength="5" 
 				#name="ngModel"
 				pattern="[a-zA-Z\s]+">
 			</div>
@@ -69,7 +70,7 @@
 
 	<div class="field">
 		<div class="ui checkbox">
-			<input type="checkbox" tabindex="0" class="hidden">
+			<input type="checkbox" tabindex="0" class="hidden" id="1" (change)="onCheckboxChange(1,$event)" required>
 			<label>I agree to the Terms and Conditions</label>
 		</div>
 	</div>
