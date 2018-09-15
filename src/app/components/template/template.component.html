@@ -50,7 +50,7 @@
 	<div class="three fields">
 		<div class="field">
 			<div [ngClass]="{'field error': (name.touched && !name.valid)}"> 
-				<label>Name</label>
+				<label>Name <span class="required">*</span></label>
 				<input type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required minlength="5" #name="ngModel">
 			</div>
 			<div class="ui negative message" *ngIf="(!name.valid && name.touched)">
@@ -66,7 +66,7 @@
 
 		<div class="field">
 			<div [ngClass]="{'field error': (!username.valid && username.touched)}">
-				<label>Username</label>
+				<label>Username <span class="required">*</span></label>
 				<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">
 			</div>
 			<div class="ui negative message" *ngIf="(!username.valid && username.touched)">
@@ -81,7 +81,7 @@
 		</div>
 		<div class="field">
 			<div [ngClass]="{'field error': (!email.valid && email.touched)}">
-				<label>E-mail</label>
+				<label>E-mail <span class="required">*</span></label>
 				<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #email="ngModel">
 			</div>
 
@@ -107,6 +107,12 @@
 
 	<button class="ui button green" type="submit" [disabled]="!tryForm.valid">Submit</button>
 </form>
+
+<style type="text/css">
+	.required{
+		color: red;
+	}
+</style>
 
 
 
