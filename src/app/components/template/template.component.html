@@ -9,33 +9,37 @@
 <h2 class="ui header">No validated form.</h2>
   <p>The first example shows an unvalidated form. You can write anything in the entry fields, and the form should be sent.</p>
 
-<form  (ngSubmit)="save(tryForm_)" #tryForm_="ngForm" class="ui form">
+  <form  (ngSubmit)="save(tryForm_)" #tryForm_="ngForm" class="ui form">
 
-	<div class="field">
-		<label>Name</label>
-		<input type="text" name="name" placeholder="Name" required>
-	</div>
+  	<div class="three fields">
+  		<div class="field">
+  			<label>Name</label>
+  			<input type="text" name="name" placeholder="Name" required>
+  		</div>
 
-	<div class="field">
-		<label>Username</label>
-		<input type="text" name="username" placeholder="Username" >
-	</div>
+  		<div class="field">
+  			<label>Username</label>
+  			<input type="text" name="username" placeholder="Username" >
+  		</div>
 
-	<div class="field">
-		<label>E-mail</label>
-		<input type="text" name="email"  placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-	</div>
+  		<div class="field">
+  			<label>E-mail</label>
+  			<input type="text" name="email"  placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+  		</div>
 
-	<div class="field">
-		<div class="ui checkbox">
-			<input type="checkbox" tabindex="0" class="hidden">
-			<label>I agree to the Terms and Conditions</label>
-		</div>
-	</div>
+  	</div>
 
-	<button class="ui button" type="submit">Submit</button>
-	 <div class="ui error message"></div>
-</form>
+  	<div class="field">
+  		<div class="ui checkbox">
+  			<input type="checkbox" tabindex="0" class="hidden">
+  			<label>I agree to the Terms and Conditions</label>
+  		</div>
+  	</div>
+
+  	<button class="ui button green" type="submit">Submit</button>
+  </form>
+  <br>
+  <div class="ui divider"></div>
 
 <!-- Validated form -->
 
@@ -43,56 +47,57 @@
 <p>The second example shows a validated form. You must write the correct text in the fields, and the form must be sent. If the text is not correct, the form can not be sent.</p>
 <form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form">
 
-	<div class="field">
-		<div [ngClass]="{'field error': (name.touched && !name.valid)}"> 
-			<label>Name</label>
-			<input type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required minlength="5" #name="ngModel">
-		</div>
-		<div class="ui negative message" *ngIf="(!name.valid && name.touched)">
-			<div class="header">
-				Error in name field!
+	<div class="three fields">
+		<div class="field">
+			<div [ngClass]="{'field error': (name.touched && !name.valid)}"> 
+				<label>Name</label>
+				<input type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required minlength="5" #name="ngModel">
 			</div>
-			<ul>
-				<li *ngIf="name.errors?.required">This field is required</li>
-				<li *ngIf="name.errors?.minlength"> Min length {{name.errors.minlength.requiredLength}}</li>
-			</ul>
+			<div class="ui negative message" *ngIf="(!name.valid && name.touched)">
+				<div class="header">
+					Error in name field!
+				</div>
+				<ul>
+					<li *ngIf="name.errors?.required">This field is required</li>
+					<li *ngIf="name.errors?.minlength"> Min length {{name.errors.minlength.requiredLength}}</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="field">
+			<div [ngClass]="{'field error': (!username.valid && username.touched)}">
+				<label>Username</label>
+				<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">
+			</div>
+			<div class="ui negative message" *ngIf="(!username.valid && username.touched)">
+				<div class="header">
+					Error in username field!
+				</div>
+				<ul>
+					<li *ngIf="username.errors?.required">This field is required</li>
+					<li *ngIf="username.errors?.minlength"> Min length {{name.errors?.minlength.requiredLength}}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="field">
+			<div [ngClass]="{'field error': (!email.valid && email.touched)}">
+				<label>E-mail</label>
+				<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #email="ngModel">
+			</div>
+
+			<div class="ui negative message" *ngIf="(!email.valid && email.touched)">
+				<div class="header">
+					Error in email field!
+				</div>
+				<ul>
+					<li *ngIf="email.errors?.required">Write a email.</li>
+					<li *ngIf="email.errors?.pattern">You have to write a valid email.</li>
+				</ul>
+			</div>
 		</div>
 		
 	</div>
-
-	<div class="field">
-		<div [ngClass]="{'field error': (!username.valid && username.touched)}">
-			<label>Username</label>
-			<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">
-		</div>
-		<div class="ui negative message" *ngIf="(!username.valid && username.touched)">
-			<div class="header">
-				Error in username field!
-			</div>
-			<ul>
-				<li *ngIf="username.errors?.required">This field is required</li>
-				<li *ngIf="username.errors?.minlength"> Min length {{name.errors?.minlength.requiredLength}}</li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="field">
-		<div [ngClass]="{'field error': (!email.valid && email.touched)}">
-			<label>E-mail</label>
-			<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #email="ngModel">
-		</div>
-
-		<div class="ui negative message" *ngIf="(!email.valid && email.touched)">
-			<div class="header">
-				Error in email field!
-			</div>
-			<ul>
-				<li *ngIf="email.errors?.required">Write a email.</li>
-				<li *ngIf="email.errors?.pattern">You have to write a valid email.</li>
-			</ul>
-		</div>
-	</div>
-
+		
 	<div class="field">
 		<div class="ui checkbox">
 			<input type="checkbox" tabindex="0" class="hidden">
@@ -100,8 +105,7 @@
 		</div>
 	</div>
 
-	<button class="ui button" type="submit">Submit</button>
-	 <div class="ui error message"></div>
+	<button class="ui button green" type="submit" [disabled]="!tryForm.valid">Submit</button>
 </form>
 
 
