@@ -1,4 +1,4 @@
-<div class="ui container">
+<div class="ui container padding">
 
 <!-- Validated form -->
 <h1 class="ui header centered align">
@@ -12,7 +12,14 @@
 		<div class="field">
 			<div [ngClass]="{'field error': (name.touched && !name.valid)}"> 
 				<label class="bold">Name <span class="required">*</span></label>
-				<input type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required minlength="5" #name="ngModel">
+				<input 
+				type="text" 
+				name="name" 
+				[(ngModel)]="user.name" 
+				placeholder="Name" 
+				required minlength="5" 
+				#name="ngModel"
+				pattern="[a-zA-Z\s]+">
 			</div>
 			<div class="ui negative message" *ngIf="(!name.valid && name.touched)">
 				<div class="header">
@@ -21,6 +28,7 @@
 				<ul>
 					<li *ngIf="name.errors?.required">This field is required</li>
 					<li *ngIf="name.errors?.minlength"> Min length {{name.errors.minlength.requiredLength}}</li>
+					<li *ngIf="name.errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
 				</ul>
 			</div>
 		</div>
