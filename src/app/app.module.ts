@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TemplateComponent } from './components/template/template.component';
 import { DataComponent } from './components/data/data.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DataComponent } from './components/data/data.component';
     AppComponent,
     HomeComponent,
     TemplateComponent,
-    DataComponent
+    DataComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

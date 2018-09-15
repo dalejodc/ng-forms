@@ -1,0 +1,13 @@
+.full-width {
+	height: 100%;
+	min-height: 91vh;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	background: #134e5e; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #134e5e, #71b280);
+	background: linear-gradient(to right, #134e5e, #71b280);
+}
+
+.white-text{
+	color: white !important;
+}

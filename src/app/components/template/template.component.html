@@ -1,14 +1,4 @@
-<br>
-<div class="row">
-	<h1 class="ui header centered">
-		Angular t
-		<div class="sub header">Template aproximation</div>
-	</h1>
-	<div class="ui raised segment centered">
-		<p>We are going to show how the template aproximation works on a form. Using template.component.html to make validations to inputs fields.</p>
-	</div>
-</div>
-
+<div class="ui container">
 <h2 class="ui header">No validated form.</h2>
 <p>The first example shows an unvalidated form. You can write anything in the entry fields, and the form should be sent.</p>
 
@@ -53,7 +43,7 @@
 	<div class="three fields">
 		<div class="field">
 			<div [ngClass]="{'field error': (name.touched && !name.valid)}"> 
-				<label>Name <span class="required">*</span></label>
+				<label class="bold">Name <span class="required">*</span></label>
 				<input type="text" name="name" [(ngModel)]="user.name" placeholder="Name" required minlength="5" #name="ngModel">
 			</div>
 			<div class="ui negative message" *ngIf="(!name.valid && name.touched)">
@@ -69,7 +59,7 @@
 
 		<div class="field">
 			<div [ngClass]="{'field error': (!username.valid && username.touched)}">
-				<label>Username <span class="required">*</span></label>
+				<label  class="bold">Username <span class="required">*</span></label>
 				<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">
 			</div>
 			<div class="ui negative message" *ngIf="(!username.valid && username.touched)">
@@ -84,7 +74,7 @@
 		</div>
 		<div class="field">
 			<div [ngClass]="{'field error': (!email.valid && email.touched)}">
-				<label>E-mail <span class="required">*</span></label>
+				<label class="bold">E-mail <span class="required">*</span></label>
 				<input type="text" name="email" [(ngModel)]="user.email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #email="ngModel">
 			</div>
 
@@ -110,10 +100,16 @@
 
 	<button class="ui button green" type="submit" [disabled]="!tryForm.valid">Submit</button>
 </form>
+</div>
 
 <style type="text/css">
 .required{
 	color: red;
+}
+
+.bold{
+	font-weight: 700;
+	padding-bottom:  30px !important;
 }
 </style>
 
