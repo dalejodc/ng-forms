@@ -36,5 +36,10 @@ p{
 
 .italic{
 	font-style: italic;
+	color:#eeeeee;
+}
+
+#plus{
+	color:#b2ebf2;
 }
 
