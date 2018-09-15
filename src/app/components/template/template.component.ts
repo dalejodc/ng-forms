@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2'
 
 // import * as $ from 'jquery';
 declare var $:any;
@@ -19,31 +20,36 @@ export class TemplateComponent implements OnInit {
 		email:null
 	}
 
+	toast:any;
+
 	ngOnInit() {
 		$('.ui.checkbox').checkbox();
+
+		this.toast = swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 3000
+		});
+
+		
 
 	}
 
 	save(tryForm?:NgForm){
-		$('#qqform form')
-		.form({
-			on: 'blur',
-			inline: false,
-			fields: {
-				email: {
-					identifier  : 'email',
-					rules: [
-					{
-						type   : 'empty',
-						prompt : 'Please enter a value'
-					}
-					]
-				}
-			}
-		});
-
-		console.log("Post");
 		console.log('Complete form:',tryForm);
+
+		if(tryForm.valid){
+			this.toast({
+			type: 'success',
+			title: 'Must be sent!'
+			})
+		}else{
+			this.toast({
+			type: 'error',
+			title: 'Error in the form!'
+			})
+		}
 		console.log(this.user);
 	}
 
