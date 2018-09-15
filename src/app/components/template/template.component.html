@@ -1,42 +1,10 @@
 <div class="ui container">
-<h2 class="ui header">No validated form.</h2>
-<p>The first example shows an unvalidated form. You can write anything in the entry fields, and the form should be sent.</p>
-
-<form  (ngSubmit)="save(tryForm_)" #tryForm_="ngForm" class="ui form">
-
-	<div class="three fields">
-		<div class="field">
-			<label>Name</label>
-			<input type="text" name="name" placeholder="Name" required>
-		</div>
-
-		<div class="field">
-			<label>Username</label>
-			<input type="text" name="username" placeholder="Username" >
-		</div>
-
-		<div class="field">
-			<label>E-mail</label>
-			<input type="text" name="email"  placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-		</div>
-
-	</div>
-
-	<div class="field">
-		<div class="ui checkbox">
-			<input type="checkbox" tabindex="0" class="hidden">
-			<label>I agree to the Terms and Conditions</label>
-		</div>
-	</div>
-
-	<button class="ui button green" type="submit">Submit</button>
-</form>
-<br>
-<div class="ui divider"></div>
 
 <!-- Validated form -->
-
-<h2 class="ui header">Validated form.</h2>
+<h1 class="ui header centered align">
+  Validated form.
+  <div class="sub header">Template aproximation</div>
+</h1>
 <p>The second example shows a validated form. You must write the correct text in the fields, and the form must be sent. If the text is not correct, the form can not be sent.</p>
 <form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form">
 

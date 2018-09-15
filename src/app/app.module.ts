@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TemplateComponent } from './components/template/template.component';
 import { DataComponent } from './components/data/data.component';
 import { HeaderComponent } from './components/header/header.component';
+import { NoValidatedComponent } from './components/no-validated/no-validated.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HeaderComponent } from './components/header/header.component';
     HomeComponent,
     TemplateComponent,
     DataComponent,
-    HeaderComponent
+    HeaderComponent,
+    NoValidatedComponent
   ],
   imports: [
     BrowserModule,
