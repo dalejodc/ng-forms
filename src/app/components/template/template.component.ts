@@ -81,7 +81,7 @@ export class TemplateComponent implements OnInit {
 	getCountries(){
 		this.countries = this._countriesServices.getCountries();
 
-		console.log(this.countries);
+		// console.log(this.countries);
 	}
 }
 
