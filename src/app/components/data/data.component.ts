@@ -16,8 +16,17 @@ export class DataComponent implements OnInit {
 
 	constructor(private _countryService:CountriesService) { 
 		this.formExample = new FormGroup({
-			'name': new FormControl('', Validators.required),
-			'username': new FormControl('', Validators.required),
+			'name': new FormControl('', 
+				[
+					Validators.required,
+					Validators.minLength(5),
+					Validators.pattern("[a-zA-Z\s]+")	
+				]),
+			'username': new FormControl('', 
+				[
+					Validators.required,
+					Validators.minLength(3)
+				]),
 			'country':new FormControl('', Validators.required),
 			'email': new FormControl('', 
 				[

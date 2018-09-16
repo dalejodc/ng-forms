@@ -8,8 +8,20 @@
 
 		<div class="three fields">
 			<div class="field">
-				<label>Name</label>
-				<input type="text" name="name" placeholder="Name" required formControlName="name">
+				<div [ngClass]="{'field error': (formExample.controls['name'].touched && !formExample.controls['name'].valid)}">
+					<label>Name</label>
+					<input type="text" name="name" placeholder="Name" required formControlName="name">
+				</div>
+				<div class="ui negative message" *ngIf="(!formExample.controls['name'].valid && formExample.controls['name'].touched)">
+					<div class="header">
+						Error in name field!
+					</div>
+					<ul>
+						<li *ngIf="formExample.controls['name'].errors?.required">This field is required</li>
+						<li *ngIf="formExample.controls['name'].errors?.minlength"> Min length {{formExample.controls['name'].errors?.minlength.requiredLength}}</li>
+						<li *ngIf="formExample.controls['name'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
+					</ul>
+				</div>
 			</div>
 
 			<div class="field">
@@ -23,6 +35,15 @@
 			<div class="field">
 				<label>Username</label>
 				<input type="text" name="username" placeholder="Username" formControlName="username">
+				<div class="ui negative message" *ngIf="(!formExample.controls['username'].valid && formExample.controls['username'].touched)">
+					<div class="header">
+						Error in username field!
+					</div>
+					<ul>
+						<li *ngIf="formExample.controls['username'].errors?.required">This field is required</li>
+						<li *ngIf="formExample.controls['username'].errors?.minlength"> Min length {{formExample.controls['username'].errors?.minlength.requiredLength}}</li>
+					</ul>
+				</div>
 			</div>
 
 			<div class="field">
@@ -41,7 +62,8 @@
 			</div>
 			<div class="row">
 				<div class="column">
-					<button class="ui button green" type="submit" [disabled]="!formExample.valid">Submit</button>
+					<!-- [disabled]="!formExample.valid" -->
+					<button class="ui button green" type="submit" >Submit</button>
 				</div>
 			</div>
 		</div>
