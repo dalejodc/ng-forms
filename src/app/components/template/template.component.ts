@@ -19,7 +19,8 @@ export class TemplateComponent implements OnInit {
 	user: Object={
 		name: null,
 		username: null,
-		email:null
+		email:null,
+		country: ""
 	}
 
 	checkedBox: boolean=false;

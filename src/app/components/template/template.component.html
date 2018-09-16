@@ -36,10 +36,9 @@
 
 			<div class="field">
 				 <label>Country</label>
-				<select>
-					<option value="">Select your contry</option>
-					<option value="1">Guatemala</option>
-					<option value="0">Female</option>
+				<select [(ngModel)]="user.country" required name="country">
+					<option value="">Select your country</option>
+					<option *ngFor="let x of countries" value="{{x.id}}">{{x.name}}</option>
 				</select>
 			</div>
 
