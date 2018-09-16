@@ -2,6 +2,8 @@
 	<h2 class="ui header centered align">No validated form</h2>
 	<p>The first example shows an unvalidated form; you can type anything in the inputs fields, and the form should be sent. Even, you can press the submit button without agree the Terms and Conditions.</p>
 
+	<br>
+
 	<form  (ngSubmit)="save(tryForm_)" #tryForm_="ngForm" class="ui form">
 
 		<div class="three fields">
@@ -11,7 +13,7 @@
 			</div>
 
 			<div class="field">
-				 <label>Country</label>
+				<label>Country</label>
 				<select [(ngModel)]="user.country" name="country">
 					<option value="">Select your country</option>
 					<option *ngFor="let x of countries" value="{{x.id}}">{{x.name}}</option>
@@ -27,17 +29,23 @@
 				<label>E-mail</label>
 				<input type="text" name="email"  placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 			</div>
-
 		</div>
 
-		<div class="field">
-			<div class="ui checkbox">
-				<input type="checkbox" tabindex="0" class="hidden">
-				<label>I agree to the Terms and Conditions</label>
+
+		<div class="ui center aligned three column grid">
+			<div class="field padding">
+				<div class="ui checkbox">
+					<input type="checkbox" tabindex="0" class="hidden">
+					<label>I agree to the Terms and Conditions</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="column">
+					<button class="ui button green " type="submit">Submit</button>
+				</div>
 			</div>
 		</div>
 
-		<button class="ui button green" type="submit">Submit</button>
 	</form>
 
 	<div class="ui success message" *ngIf="successMessage">

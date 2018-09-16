@@ -5,7 +5,9 @@
 		Validated form
 		<div class="sub header">Template aproximation</div>
 	</h1>
+	<br>
 	<p>The second example shows a validated form. You must write the correct text in the fields, and the form must be sent. If the text is not correct, the form can not be sent.</p>
+	<br>
 	<form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form">
 
 		<div class="three fields">
@@ -35,7 +37,7 @@
 			</div>
 
 			<div class="field">
-				 <label>Country</label>
+				<label>Country</label>
 				<select [(ngModel)]="user.country" required name="country">
 					<option value="">Select your country</option>
 					<option *ngFor="let x of countries" value="{{x.id}}">{{x.name}}</option>
@@ -76,20 +78,24 @@
 
 		</div>
 
-		<div class="field">
-			<div class="ui checkbox">
-				<input type="checkbox" tabindex="0" class="hidden" id="1" (change)="onCheckboxChange(1,$event)" required>
-				<label>I agree to the Terms and Conditions</label>
-			</div>
-			<div class="ui negative message" *ngIf="errorMessage">
-				<div class="header">
-					You have to check te box!.
+		<div class="ui center aligned three column grid">
+			<div class="field padding-check">
+				<div class="ui checkbox">
+					<input type="checkbox" tabindex="0" class="hidden" id="1" (change)="onCheckboxChange(1,$event)" required>
+					<label>I agree to the Terms and Conditions</label>
+				</div>
+				<div class="ui negative message" *ngIf="errorMessage">
+					<div class="header">
+						You have to check te box!.
+					</div>
 				</div>
 			</div>
-
+			<div class="row">
+				<div class="column">
+					<button class="ui button green" type="submit" [disabled]="!tryForm.valid">Submit</button>
+				</div>
+			</div>
 		</div>
-
-		<button class="ui button green" type="submit" [disabled]="!tryForm.valid">Submit</button>
 
 	</form>
 	<div class="ui success message" *ngIf="successMessage">
