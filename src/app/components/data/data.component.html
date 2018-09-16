@@ -49,6 +49,15 @@
 			<div class="field">
 				<label>E-mail</label>
 				<input type="text" name="email"  placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" formControlName="email">
+				<div class="ui negative message" *ngIf="(!formExample.controls['email'].valid && formExample.controls['email'].touched)">
+					<div class="header">
+						Error in email field!
+					</div>
+					<ul>
+						<li *ngIf="formExample.controls['email'].errors?.required">Write a email.</li>
+						<li *ngIf="formExample.controls['email'].errors?.pattern">You have to write a valid email.</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 
