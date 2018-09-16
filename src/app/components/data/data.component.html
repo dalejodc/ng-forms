@@ -9,25 +9,25 @@
 		<div class="three fields">
 			<div class="field">
 				<label>Name</label>
-				<input type="text" name="name" placeholder="Name" required>
+				<input type="text" name="name" placeholder="Name" required formControlName="name">
 			</div>
 
 			<div class="field">
 				<label>Country</label>
-				<select name="country">
+				<select name="country" formControlName="country">
 					<option value="">Select your country</option>
-					<option *ngFor="let x of countries" value="{{x.id}}">{{x.name}}</option>
+					<option *ngFor="let x of countries" value="x.id" >{{x.name}}</option>
 				</select>
 			</div>
 
 			<div class="field">
 				<label>Username</label>
-				<input type="text" name="username" placeholder="Username" >
+				<input type="text" name="username" placeholder="Username" formControlName="username">
 			</div>
 
 			<div class="field">
 				<label>E-mail</label>
-				<input type="text" name="email"  placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+				<input type="text" name="email"  placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" formControlName="email">
 			</div>
 		</div>
 
@@ -41,10 +41,11 @@
 			</div>
 			<div class="row">
 				<div class="column">
-					<button class="ui button green " type="submit">Submit</button>
+					<button class="ui button green" type="submit" [disabled]="!formExample.valid">Submit</button>
 				</div>
 			</div>
 		</div>
+		{{formExample.valid}}
 
 	</form>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validator } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { CountriesService } from '../../services/countries.service'
 
@@ -16,9 +16,15 @@ export class DataComponent implements OnInit {
 
 	constructor(private _countryService:CountriesService) { 
 		this.formExample = new FormGroup({
-			'name': new FormControl('Daniel'),
-			'user': new FormControl(''),
-			'email': new FormControl('')
+			'name': new FormControl('', Validators.required),
+			'username': new FormControl('', Validators.required),
+			'country':new FormControl('', Validators.required),
+			'email': new FormControl('', 
+				[
+					Validators.required, 
+					Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
+				]
+				)
 		})
 	}
 
@@ -32,6 +38,8 @@ export class DataComponent implements OnInit {
 
 	save(){
 		console.log(this.formExample.value);
+		console.log(this.formExample.valid);
+		console.log(this.formExample);
 	}
 
 }
