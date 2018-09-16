@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { APP_ROUTING } from './app.routes';
 
@@ -24,6 +24,7 @@ import { NoValidatedComponent } from './components/no-validated/no-validated.com
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     APP_ROUTING
   ],
   providers: [],

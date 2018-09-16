@@ -1,3 +1,60 @@
-<p>
-  data works!
-</p>
+<div class="ui container padding">
+	<h2 class="ui header centered align">Data aproximation</h2>
+	<p>The third example shows an alidated form; yYou must write the correct text in the fields, and the form must be sent. If the text is not correct, the form can not be sent.</p>
+
+	<br>
+
+	<form  class="ui form" (ngSubmit)="save()" [formGroup]="formExample">
+
+		<div class="three fields">
+			<div class="field">
+				<label>Name</label>
+				<input type="text" name="name" placeholder="Name" required>
+			</div>
+
+			<div class="field">
+				<label>Country</label>
+				<select name="country">
+					<option value="">Select your country</option>
+					<option *ngFor="let x of countries" value="{{x.id}}">{{x.name}}</option>
+				</select>
+			</div>
+
+			<div class="field">
+				<label>Username</label>
+				<input type="text" name="username" placeholder="Username" >
+			</div>
+
+			<div class="field">
+				<label>E-mail</label>
+				<input type="text" name="email"  placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+			</div>
+		</div>
+
+
+		<div class="ui center aligned three column grid">
+			<div class="field padding-check">
+				<div class="ui checkbox">
+					<input type="checkbox" tabindex="0" class="hidden">
+					<label>I agree to the Terms and Conditions</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="column">
+					<button class="ui button green " type="submit">Submit</button>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+	<div class="ui success message" *ngIf="successMessage">
+		<i class="close icon" (click)="close()"></i>
+		<div class="header">
+			Your request was sent.
+		</div>
+		<p>Even if the inputs fields was empty or filled with any random text.</p>
+	</div>
+	<br>
+</div>	
+<div class="ui divider"></div>
