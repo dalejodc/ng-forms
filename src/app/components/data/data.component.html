@@ -65,8 +65,13 @@
 		<div class="ui center aligned three column grid">
 			<div class="field padding-check">
 				<div class="ui checkbox">
-					<input type="checkbox" tabindex="0" class="hidden">
+					<input type="checkbox" tabindex="0" class="hidden" id="1" (change)="onCheckboxChange($event)">
 					<label>I agree to the Terms and Conditions</label>
+				</div>
+				<div class="ui negative message" *ngIf="errorMessage">
+					<div class="header">
+						You have to check te box!.
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -76,8 +81,6 @@
 				</div>
 			</div>
 		</div>
-		{{formExample.valid}}
-
 	</form>
 
 	<div class="ui success message" *ngIf="successMessage">
@@ -85,7 +88,7 @@
 		<div class="header">
 			Your request was sent.
 		</div>
-		<p>Even if the inputs fields was empty or filled with any random text.</p>
+		<p>The request could be sent until all the fields are correct.</p>
 	</div>
 	<br>
 </div>	

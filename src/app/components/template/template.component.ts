@@ -64,7 +64,7 @@ export class TemplateComponent implements OnInit {
 		console.log(this.user);
 	}
 
-	onCheckboxChange(id, event) {
+	onCheckboxChange(event) {
 		if(event.target.checked) { 
 			console.log('Acepted');
 			this.errorMessage = false;
