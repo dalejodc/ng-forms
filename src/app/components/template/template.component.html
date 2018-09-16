@@ -35,6 +35,15 @@
 			</div>
 
 			<div class="field">
+				 <label>Country</label>
+				<select>
+					<option value="">Select your contry</option>
+					<option value="1">Guatemala</option>
+					<option value="0">Female</option>
+				</select>
+			</div>
+
+			<div class="field">
 				<div [ngClass]="{'field error': (!username.valid && username.touched)}">
 					<label  class="bold">Username <span class="required">*</span></label>
 					<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="3" #username="ngModel">

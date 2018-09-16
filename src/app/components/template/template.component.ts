@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import swal from 'sweetalert2'
 
-// import * as $ from 'jquery';
+import { CountriesService } from '../../services/countries.service';
+
+import swal from 'sweetalert2'
 declare var $:any;
 
 @Component({
 	selector: 'app-template',
 	templateUrl: './template.component.html',
-	styleUrls: ['./template.component.css']
+	styleUrls: ['./template.component.css'],
+	providers: [CountriesService]
 })
 export class TemplateComponent implements OnInit {
 
-	constructor() { }
+	constructor(private _countriesServices:CountriesService) { }
 
 	user: Object={
 		name: null,
@@ -24,6 +26,7 @@ export class TemplateComponent implements OnInit {
 	errorMessage: boolean = false;
 	successMessage: boolean = false;
 	toast:any;
+	countries: any;
 
 	ngOnInit() {
 		$('.ui.checkbox').checkbox();
@@ -35,7 +38,7 @@ export class TemplateComponent implements OnInit {
 			timer: 3000
 		});
 
-
+		this.getCountries();
 	}
 
 	save(tryForm?:NgForm){
@@ -72,6 +75,12 @@ export class TemplateComponent implements OnInit {
 
 	close(){
 		this.successMessage = false;
+	}
+
+	getCountries(){
+		this.countries = this._countriesServices.getCountries();
+
+		console.log(this.countries);
 	}
 }
 
