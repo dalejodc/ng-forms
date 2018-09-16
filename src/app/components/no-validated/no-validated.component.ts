@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+
+import { CountriesService } from '../../services/countries.service';
+
 import swal from 'sweetalert2'
 declare var $:any;
 
@@ -7,20 +10,23 @@ declare var $:any;
 @Component({
 	selector: 'app-no-validated',
 	templateUrl: './no-validated.component.html',
-	styleUrls: ['./no-validated.component.css']
+	styleUrls: ['./no-validated.component.css'],
+	providers: [CountriesService]
 })
 export class NoValidatedComponent implements OnInit {
 
 	user: Object={
 		name: null,
 		username: null,
-		email:null
+		email:null,
+		country: null
 	}
 
 	toast:any;
 	successMessage:boolean = false;
+	countries: any;
 
-	constructor() { }
+	constructor(private _countriesServices:CountriesService) { }
 
 	ngOnInit() {
 		$('.ui.checkbox').checkbox();
@@ -31,6 +37,8 @@ export class NoValidatedComponent implements OnInit {
 			showConfirmButton: false,
 			timer: 3000
 		});
+
+		this.getCountries();
 
 	}
 
@@ -45,6 +53,12 @@ export class NoValidatedComponent implements OnInit {
 
 	close(){
 		this.successMessage = false;
+	}
+
+	getCountries(){
+		this.countries = this._countriesServices.getCountries();
+
+		console.log(this.countries);
 	}
 
 }

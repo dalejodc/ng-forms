@@ -11,6 +11,14 @@
 			</div>
 
 			<div class="field">
+				 <label>Country</label>
+				<select [(ngModel)]="user.country" name="country">
+					<option value="">Select your country</option>
+					<option *ngFor="let x of countries" value="{{x.id}}">{{x.name}}</option>
+				</select>
+			</div>
+
+			<div class="field">
 				<label>Username</label>
 				<input type="text" name="username" placeholder="Username" >
 			</div>
