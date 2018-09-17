@@ -68,7 +68,13 @@
 				<div class="ui negative message" *ngIf="(!email.valid && email.touched)">
 					<div class="header">
 						Error in email field!
-					</div>
+		<div class="ui success message" *ngIf="successMessage">
+		<i class="close icon" (click)="close()"></i>
+		<div class="header">
+			Your request was sent.
+		</div>
+		<p>The request could be sent until all the fields are correct.</p>
+	</div>			</div>
 					<ul>
 						<li *ngIf="email.errors?.required">Write a email.</li>
 						<li *ngIf="email.errors?.pattern">You have to write a valid email.</li>

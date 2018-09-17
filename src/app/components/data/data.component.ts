@@ -18,6 +18,7 @@ export class DataComponent implements OnInit {
 	formExampleNestedObj: FormGroup;	
 	errorMessage: boolean = false;
 	successMessage: boolean = false;
+	successMessageNestedForm: boolean = false;
 	toast:any;
 	checkedBox: boolean=false;
 
@@ -125,6 +126,21 @@ export class DataComponent implements OnInit {
 	}
 
 	saveNestedForm(){
+		if(this.formExampleNestedObj.valid){
+			this.successMessageNestedForm = true;
+			this.toast({
+				type: 'success',
+				title: 'Must be sent!'
+			})
+		}else{
+			if(!this.checkedBox){
+				this.errorMessage = true;
+			}
+			this.toast({
+				type: 'error',
+				title: 'Error in the form!'
+			})
+		}
 		console.log(this.formExampleNestedObj.value);
 		console.log(this.formExampleNestedObj);
 	}
