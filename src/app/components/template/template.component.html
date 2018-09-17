@@ -81,7 +81,7 @@
 		<div class="ui center aligned three column grid">
 			<div class="field padding-check">
 				<div class="ui checkbox">
-					<input type="checkbox" tabindex="0" class="hidden" id="1" (change)="onCheckboxChange(1,$event)" required>
+					<input type="checkbox" tabindex="0" class="hidden" id="1" (change)="onCheckboxChange($event)" required>
 					<label>I agree to the Terms and Conditions</label>
 				</div>
 				<div class="ui negative message" *ngIf="errorMessage">
