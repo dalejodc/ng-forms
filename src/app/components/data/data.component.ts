@@ -59,22 +59,22 @@ export class DataComponent implements OnInit {
 		this.formExampleNestedObj = new FormGroup({
 			'fullname' : new FormGroup({
 				'firstname': new FormControl('', 
-				[
+					[
 					Validators.required,
 					Validators.pattern("[a-zA-Z\s]+")	
-				]),
+					]),
 				'lastname': new FormControl('', 
-				[
+					[
 					Validators.required,
 					Validators.pattern("[a-zA-Z\s]+")	
-				]),
+					]),
 			}),
 			'email': new FormControl('', 
 				[
 				Validators.required, 
 				Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
 				]
-			)
+				)
 		});
 	}
 
@@ -110,6 +110,16 @@ export class DataComponent implements OnInit {
 				type: 'success',
 				title: 'Must be sent!'
 			})
+
+			this.formExample.reset({
+				user:{
+					fullname:{
+						firstname: null,
+						lastname: null
+					},
+					email: null
+				}
+			})
 		}else{
 			if(!this.checkedBox){
 				this.errorMessage = true;
@@ -123,6 +133,7 @@ export class DataComponent implements OnInit {
 
 	close(){
 		this.successMessage = false;
+		this.successMessageNestedForm = false;
 	}
 
 	saveNestedForm(){
@@ -132,6 +143,16 @@ export class DataComponent implements OnInit {
 				type: 'success',
 				title: 'Must be sent!'
 			})
+
+			this.formExampleNestedObj.reset({
+				user:{
+					fullname:{
+						firstname: null,
+						lastname: null
+					},
+					email: null
+				}
+			});
 		}else{
 			if(!this.checkedBox){
 				this.errorMessage = true;

@@ -52,6 +52,16 @@ export class TemplateComponent implements OnInit {
 				type: 'success',
 				title: 'Must be sent!'
 			})
+
+			tryForm.reset({
+				user:{
+					name: null,
+					username: null,
+					email:null,
+					country: ""
+				}
+			})
+			
 		}else{
 			if(!this.checkedBox){
 				this.errorMessage = true;
