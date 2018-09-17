@@ -148,6 +148,16 @@
 				<label>Email</label>
 				<input type="text" formControlName="email" placeholder="E-mail">
 			</div>
+			<!-- Error message for email -->
+			<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.email.valid && formExampleNestedObj.controls.email.touched)">
+				<div class="header">
+					Error in email field!
+				</div>
+				<ul>
+					<li *ngIf="formExampleNestedObj.controls.email.errors?.required">The email field is required</li>
+					<li *ngIf="formExampleNestedObj.controls.email.errors?.pattern">You have to write a valid email.</li>
+				</ul>
+			</div>
 		</div>
 		<div class="ui center aligned three column grid">
 			<div class="row">
@@ -157,5 +167,4 @@
 			</div>
 		</div>
 	</form>
-	{{formExampleNestedObj.status}}
 </div>	
