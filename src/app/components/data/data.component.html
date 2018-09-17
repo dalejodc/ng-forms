@@ -100,22 +100,25 @@
 	<div class="ui medium header">Nested objects</div>
 	<p>Nested object in a form</p>
 
-	<div class="ui form">
-		<div class="two fields">
+	<form class="ui form" (ngSubmit)="saveNestedForm()" [formGroup]="formExampleNestedObj">
+		<div class="two fields" >
 			<div class="field">
-				<label>Name</label>
-				<div class="two fields">
-					<div class="field">
-						<input type="text" name="shipping[first-name]" placeholder="First Name">
-					</div>
-					<div class="field">
-						<input type="text" name="shipping[last-name]" placeholder="Last Name">
+				<div formGroupName ="fullname">
+					<label>Name</label>
+					<div class="two fields">
+						<div class="field">
+							<input type="text" formControlName="firstname" placeholder="First Name">
+						</div>
+						<div class="field">
+							<input type="text" formControlName="lastname" placeholder="Last Name">
+						</div>
 					</div>
 				</div>
+				
 			</div> 
 			<div class="field">
 				<label>Email</label>
-				<input type="text" name="last-name" placeholder="Last Name">
+				<input type="text" formControlName="email" placeholder="E-mail">
 			</div>
 		</div>
 		<div class="ui center aligned three column grid">
@@ -125,5 +128,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
+	{{formExampleNestedObj.status}}
 </div>	

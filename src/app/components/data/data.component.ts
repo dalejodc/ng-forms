@@ -15,12 +15,25 @@ export class DataComponent implements OnInit {
 
 	countries: any;
 	formExample: FormGroup;	
+	formExampleNestedObj: FormGroup;	
 	errorMessage: boolean = false;
 	successMessage: boolean = false;
 	toast:any;
 	checkedBox: boolean=false;
 
+	// To use in formExampleNestedObj
+	user: Object = {
+		fullname:{
+			firstname: "First Name Example",
+			lastname: "Last Name Example"
+		},
+		email: "email@example.com"
+	}
+
 	constructor(private _countryService:CountriesService) { 
+
+		console.log(this.user);
+		
 		this.formExample = new FormGroup({
 			'name': new FormControl('', 
 				[
@@ -40,7 +53,30 @@ export class DataComponent implements OnInit {
 				Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
 				]
 				)
-		})
+		});
+
+		this.formExampleNestedObj = new FormGroup({
+			'fullname' : new FormGroup({
+				'firstname': new FormControl('', 
+				[
+					Validators.required,
+					Validators.minLength(5),
+					Validators.pattern("[a-zA-Z\s]+")	
+				]),
+				'lastname': new FormControl('', 
+				[
+					Validators.required,
+					Validators.minLength(5),
+					Validators.pattern("[a-zA-Z\s]+")	
+				]),
+			}),
+			'email': new FormControl('', 
+				[
+				Validators.required, 
+				Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
+				]
+			)
+		});
 	}
 
 	ngOnInit() {
@@ -88,6 +124,11 @@ export class DataComponent implements OnInit {
 
 	close(){
 		this.successMessage = false;
+	}
+
+	saveNestedForm(){
+		console.log(this.formExampleNestedObj.value);
+		console.log(this.formExampleNestedObj);
 	}
 
 
