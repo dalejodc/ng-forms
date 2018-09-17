@@ -12,7 +12,7 @@
 	<form  class="ui form" (ngSubmit)="save()" [formGroup]="formExample">
 
 		<div class="three fields">
-			<div class="field">
+			<div class="required field">
 				<div [ngClass]="{'field error': (formExample.controls['name'].touched && !formExample.controls['name'].valid)}">
 					<label class="bold">Name</label>
 					<input type="text" name="name" placeholder="Name" required formControlName="name">
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 
-			<div class="field">
+			<div class="required field">
 				<label>Country</label>
 				<select name="country" formControlName="country">
 					<option value="">Select your country</option>
@@ -37,7 +37,7 @@
 				</select>
 			</div>
 
-			<div class="field">
+			<div class="required field">
 				<label>Username</label>
 				<input type="text" name="username" placeholder="Username" formControlName="username">
 				<div class="ui negative message" *ngIf="(!formExample.controls['username'].valid && formExample.controls['username'].touched)">
@@ -51,7 +51,7 @@
 				</div>
 			</div>
 
-			<div class="field">
+			<div class="required field">
 				<label>E-mail</label>
 				<input type="text" name="email"  placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" formControlName="email">
 				<div class="ui negative message" *ngIf="(!formExample.controls['email'].valid && formExample.controls['email'].touched)">
@@ -99,11 +99,11 @@
 
 <div class="ui container padding-title">
 	<div class="ui medium header">Nested objects</div>
-	<p>Nested object in a form</p>
+	<p>Nested and complex object in a form</p>
 	<br>
 
 	<form class="ui form" (ngSubmit)="saveNestedForm()" [formGroup]="formExampleNestedObj">
-		<div class="two fields" >
+		<div class="required three fields" >
 			<div class="field">
 				<!-- The formGroupName must group the inputs -->
 				<div formGroupName ="fullname">
@@ -142,10 +142,8 @@
 
 					</div>
 				</div>
-
-
-				
 			</div> 
+
 			<div class="field">
 				<label>Email</label>
 				<input type="text" formControlName="email" placeholder="E-mail">
@@ -160,7 +158,24 @@
 					<li *ngIf="formExampleNestedObj.controls.email.errors?.pattern">You have to write a valid email.</li>
 				</ul>
 			</div>
+
+			<div class="required four wide field">
+				<label>Skills</label>
+				<div class="ui action input" (click)="addSkill()">
+					<input type="text" placehold="Name">
+					<div class="ui green button">Add</div>
+				</div>      
+			</div>  
 		</div>
+		<a class="ui label">
+			Tag
+			<i class="delete icon"></i>
+		</a>
+		<a class="ui label">
+			Tag
+			<i class="delete icon"></i>
+		</a>
+
 		<div class="ui center aligned three column grid">
 			<div class="row">
 				<div class="column">

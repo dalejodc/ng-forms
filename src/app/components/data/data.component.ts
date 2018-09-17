@@ -144,15 +144,7 @@ export class DataComponent implements OnInit {
 				title: 'Must be sent!'
 			})
 
-			this.formExampleNestedObj.reset({
-				user:{
-					fullname:{
-						firstname: null,
-						lastname: null
-					},
-					email: null
-				}
-			});
+			this.formExampleNestedObj.reset();
 		}else{
 			if(!this.checkedBox){
 				this.errorMessage = true;
@@ -164,6 +156,10 @@ export class DataComponent implements OnInit {
 		}
 		console.log(this.formExampleNestedObj.value);
 		console.log(this.formExampleNestedObj);
+	}
+
+	addSkill(){
+		console.log('Skill added!');
 	}
 
 
