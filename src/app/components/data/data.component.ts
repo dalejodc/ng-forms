@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 import { CountriesService } from '../../services/countries.service'
 
@@ -21,6 +21,7 @@ export class DataComponent implements OnInit {
 	successMessageNestedForm: boolean = false;
 	toast:any;
 	checkedBox: boolean=false;
+	skill:string;
 
 	// To use in formExampleNestedObj
 	user: Object = {
@@ -28,7 +29,8 @@ export class DataComponent implements OnInit {
 			firstname: "First Name Example",
 			lastname: "Last Name Example"
 		},
-		email: "email@example.com"
+		email: "email@example.com",
+		skills: []
 	}
 
 	constructor(private _countryService:CountriesService) { 
@@ -73,8 +75,12 @@ export class DataComponent implements OnInit {
 				[
 				Validators.required, 
 				Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
-				]
-				)
+				]),
+			'skills': new FormArray([
+				new FormControl('MaterializeCSS', Validators.required),
+				new FormControl('Semantic UI', Validators.required),
+				new FormControl('Angular', Validators.required)
+				])
 		});
 	}
 
@@ -146,9 +152,6 @@ export class DataComponent implements OnInit {
 
 			this.formExampleNestedObj.reset();
 		}else{
-			if(!this.checkedBox){
-				this.errorMessage = true;
-			}
 			this.toast({
 				type: 'error',
 				title: 'Error in the form!'
@@ -160,6 +163,10 @@ export class DataComponent implements OnInit {
 
 	addSkill(){
 		console.log('Skill added!');
+		(<FormArray>this.formExampleNestedObj.controls['skills']).push(
+			new FormControl(this.skill, Validators.required)
+		);
+		console.log(this.formExampleNestedObj);
 	}
 
 

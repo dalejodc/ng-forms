@@ -161,25 +161,27 @@
 
 			<div class="required four wide field">
 				<label>Skills</label>
-				<div class="ui action input" (click)="addSkill()">
-					<input type="text" placehold="Name">
-					<div class="ui green button">Add</div>
-				</div>      
+				<div class="ui action input" formArrayName="skills">
+					<input type="text" placehold="Name" [(ngModel)] ="skill" [ngModelOptions]="{standalone: true}">
+					<div class="ui green button" (click)="addSkill()">Add</div> 
+				</div>     
 			</div>  
 		</div>
-		<a class="ui label">
-			Tag
+		
+		<div formArrayName="skills">
+			<a class="ui label" 
+			*ngFor="let x of formExampleNestedObj.controls['skills'].controls" 
+			>
+			{{x.value}}
 			<i class="delete icon"></i>
 		</a>
-		<a class="ui label">
-			Tag
-			<i class="delete icon"></i>
-		</a>
+		</div>
 
 		<div class="ui center aligned three column grid">
 			<div class="row">
 				<div class="column">
-					<button class="ui button green" type="submit" [disabled]="!formExampleNestedObj.valid">Submit</button>
+					<button class="ui button green" type="submit" >Submit</button>
+					<!-- [disabled]="!formExampleNestedObj.valid" -->
 				</div>
 			</div>
 		</div>
