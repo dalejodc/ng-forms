@@ -13,7 +13,7 @@
 		<div class="three fields">
 			<div class="field">
 				<div [ngClass]="{'field error': (formExample.controls['name'].touched && !formExample.controls['name'].valid)}">
-					<label>Name</label>
+					<label class="bold">Name</label>
 					<input type="text" name="name" placeholder="Name" required formControlName="name">
 				</div>
 				<div class="ui negative message" *ngIf="(!formExample.controls['name'].valid && formExample.controls['name'].touched)">
@@ -103,17 +103,30 @@
 	<form class="ui form" (ngSubmit)="saveNestedForm()" [formGroup]="formExampleNestedObj">
 		<div class="two fields" >
 			<div class="field">
+				<!-- The formGroupName must group the inputs -->
 				<div formGroupName ="fullname">
-					<label>Name</label>
+					<label class="bold">Name</label>
 					<div class="two fields">
 						<div class="field">
 							<input type="text" formControlName="firstname" placeholder="First Name">
+						</div>
+						<!-- Error message for Firstname -->
+						<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['firstname'].valid && formExampleNestedObj.controls.fullname.controls['firstname'].touched)">
+							<div class="header">
+								Error in name field!
+							</div>
+							<ul>
+								<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.required">This field. firstname is required</li>
+								<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
+							</ul>
 						</div>
 						<div class="field">
 							<input type="text" formControlName="lastname" placeholder="Last Name">
 						</div>
 					</div>
 				</div>
+
+
 				
 			</div> 
 			<div class="field">
@@ -124,7 +137,7 @@
 		<div class="ui center aligned three column grid">
 			<div class="row">
 				<div class="column">
-					<button class="ui button green" type="submit">Submit</button>
+					<button class="ui button green" type="submit" [disabled]="!formExampleNestedObj.valid">Submit</button>
 				</div>
 			</div>
 		</div>

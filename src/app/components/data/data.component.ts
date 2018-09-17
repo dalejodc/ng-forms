@@ -60,13 +60,11 @@ export class DataComponent implements OnInit {
 				'firstname': new FormControl('', 
 				[
 					Validators.required,
-					Validators.minLength(5),
 					Validators.pattern("[a-zA-Z\s]+")	
 				]),
 				'lastname': new FormControl('', 
 				[
 					Validators.required,
-					Validators.minLength(5),
 					Validators.pattern("[a-zA-Z\s]+")	
 				]),
 			}),
