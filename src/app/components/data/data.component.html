@@ -107,6 +107,8 @@
 				<div formGroupName ="fullname">
 					<label class="bold">Name</label>
 					<div class="two fields">
+
+						<!-- Input firstname -->
 						<div class="field">
 							<input type="text" formControlName="firstname" placeholder="First Name">
 						</div>
@@ -120,9 +122,22 @@
 								<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
 							</ul>
 						</div>
+						
+						<!-- Input lastname -->
 						<div class="field">
 							<input type="text" formControlName="lastname" placeholder="Last Name">
 						</div>
+						<!-- Error message for Lastname -->
+						<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['lastname'].valid && formExampleNestedObj.controls.fullname.controls['lastname'].touched)">
+							<div class="header">
+								Error in name field!
+							</div>
+							<ul>
+								<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.required">This field lastname is required</li>
+								<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
+							</ul>
+						</div>
+
 					</div>
 				</div>
 
