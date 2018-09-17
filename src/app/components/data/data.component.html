@@ -94,4 +94,36 @@
 		<p>The request could be sent until all the fields are correct.</p>
 	</div>
 	<br>
+</div>
+
+<div class="ui container">
+	<div class="ui medium header">Nested objects</div>
+	<p>Nested object in a form</p>
+
+	<div class="ui form">
+		<div class="two fields">
+			<div class="field">
+				<label>Name</label>
+				<div class="two fields">
+					<div class="field">
+						<input type="text" name="shipping[first-name]" placeholder="First Name">
+					</div>
+					<div class="field">
+						<input type="text" name="shipping[last-name]" placeholder="Last Name">
+					</div>
+				</div>
+			</div> 
+			<div class="field">
+				<label>Email</label>
+				<input type="text" name="last-name" placeholder="Last Name">
+			</div>
+		</div>
+		<div class="ui center aligned three column grid">
+			<div class="row">
+				<div class="column">
+					<button class="ui button green" type="submit">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>	
