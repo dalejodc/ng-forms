@@ -17,6 +17,7 @@ export class DataComponent implements OnInit {
 	formExample: FormGroup;	
 	formExampleNestedObj: FormGroup;	
 	errorMessage: boolean = false;
+	errorMessageSkill: boolean = false;
 	successMessage: boolean = false;
 	successMessageNestedForm: boolean = false;
 	toast:any;
@@ -161,6 +162,13 @@ export class DataComponent implements OnInit {
 		this.successMessageNestedForm = false;
 	}
 
+	/*closeSkillMessage()
+	This method hide the error message of skill input
+	*/ 
+	closeSkillMessage(){
+		this.errorMessageSkill = false;
+	}
+
 	/*
 	saveNestedForm()
 	This method simulates the submit of the form of nested complex object.
@@ -189,15 +197,18 @@ export class DataComponent implements OnInit {
 	This method add a skill in the array of skills of type FormArray with the method push(). 
 	*/
 	addSkill(){
-		console.log(this.formExampleNestedObj.controls['skills'].value);
-		(<FormArray>this.formExampleNestedObj.controls['skills']).push(
-			new FormControl(this.skill)
-		);
+		// console.log(this.skill);
+		if(this.skill){
+			(<FormArray>this.formExampleNestedObj.controls['skills']).push(
+				new FormControl(this.skill)
+				);
 
-		console.log('Skill added!');
+			console.log('Skill added!');
 
-		this.skill =null;
-		console.log(this.formExampleNestedObj.controls['skills'].value);
+			this.skill =null;
+		}else{
+			this.errorMessageSkill = true;
+		}
 	}
 
 	/* 
@@ -205,9 +216,8 @@ export class DataComponent implements OnInit {
 	This method compare de tag (x) to delete in the FormArray [skills]. It use removeAt(index) to delete
 	a element from the array.
 	*/
-
 	removeSkill(x){
-	
+
 		for (var i = this.formExampleNestedObj.controls['skills'].value.length; i--;) {
 			if (this.formExampleNestedObj.controls['skills'].value[i] == x) {
 				(<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);

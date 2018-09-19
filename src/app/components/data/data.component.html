@@ -120,7 +120,7 @@
 								Error in name field!
 							</div>
 							<ul>
-								<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.required">This field. firstname is required</li>
+								<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.required">This field firstname is required</li>
 								<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
 							</ul>
 						</div>
@@ -159,12 +159,21 @@
 				</ul>
 			</div>
 
-			<div class="required four wide field">
+			<div class="four wide field">
 				<label>Skills</label>
 				<div class="ui action input" formArrayName="skills">
 					<input type="text" placeholder="Add your skill..." [(ngModel)] ="skill" [ngModelOptions]="{standalone: true}">
-					<div class="ui green button" (click)="addSkill()">Add</div> 
-				</div>     
+					<div class="ui green button" (click)="addSkill()" >Add</div> 
+				</div> 
+				<div class="ui negative message" *ngIf="errorMessageSkill">
+					<i class="close icon" (click)="closeSkillMessage()"></i>
+					<div class="header">
+						Error in skills field
+					</div>
+					<ul>
+						<li>You have to type something to add a skill</li>
+					</ul>
+				</div>    
 			</div> 
 
 		</div>
@@ -176,22 +185,22 @@
 			{{x}}
 			<i class="delete icon" (click)="removeSkill(x)"></i>
 		</a>
-		</div>
-		<br>
-		<div class="ui center aligned three column grid">
-			<div class="row">
-				<div class="column">
-					<button class="ui button green" type="submit" >Submit</button>
-					<!-- [disabled]="!formExampleNestedObj.valid" -->
-				</div>
+	</div>
+	<br>
+	<div class="ui center aligned three column grid">
+		<div class="row">
+			<div class="column">
+				<button class="ui button green" type="submit" >Submit</button>
+				<!-- [disabled]="!formExampleNestedObj.valid" -->
 			</div>
 		</div>
-	</form>
-	<div class="ui success message" *ngIf="successMessageNestedForm">
-		<i class="close icon" (click)="close()"></i>
-		<div class="header">
-			Your request was sent.
-		</div>
-		<p>The request could be sent until all the fields are correct.</p>
 	</div>
+</form>
+<div class="ui success message" *ngIf="successMessageNestedForm">
+	<i class="close icon" (click)="close()"></i>
+	<div class="header">
+		Your request was sent.
+	</div>
+	<p>The request could be sent until all the fields are correct.</p>
+</div>
 </div>	
