@@ -162,12 +162,29 @@ export class DataComponent implements OnInit {
 	}
 
 	addSkill(){
-		console.log('Skill added!');
 		(<FormArray>this.formExampleNestedObj.controls['skills']).push(
 			new FormControl(this.skill, Validators.required)
 		);
+
+		console.log('Skill added!');
+
+		this.skill =null;
+		
 		console.log(this.formExampleNestedObj);
 	}
 
+	removeSkill(x){
+		console.log(x.value);
+		// console.log(this.formExampleNestedObj.controls['skills'].value[0]);
+
+		for (var i = this.formExampleNestedObj.controls['skills'].value.length; i--;) {
+			if (this.formExampleNestedObj.controls['skills'].value[i] === x.value) {
+				this.formExampleNestedObj.controls['skills'].value.splice(i, 1);
+			}
+		}
+		console.log(this.formExampleNestedObj.controls['skills'].value.length);
+		this.ngOnInit();
+		this.constructor();
+	}
 
 }
