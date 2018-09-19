@@ -15,6 +15,7 @@ declare var $:any;
 })
 export class NoValidatedComponent implements OnInit {
 
+	// Object to use in the form
 	user: Object={
 		name: null,
 		username: null,
@@ -42,6 +43,10 @@ export class NoValidatedComponent implements OnInit {
 
 	}
 
+	/*
+	save(tryForm?:NgForm)
+	This method simulates the submit of the form. Optionaly could receive a parameter with the form
+	*/
 	save(tryForm?:NgForm){
 		this.successMessage= true;
 
@@ -51,10 +56,18 @@ export class NoValidatedComponent implements OnInit {
 		})
 	}
 
+	/*
+	close()
+	This method hide the success message of the simulated request
+	*/ 
 	close(){
 		this.successMessage = false;
 	}
 
+	/*
+	getCountries()
+	This method get the countries of the simulated service to fill the select form
+	*/ 
 	getCountries(){
 		this.countries = this._countriesServices.getCountries();
 		// console.log(this.countries);
