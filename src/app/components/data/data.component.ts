@@ -77,9 +77,9 @@ export class DataComponent implements OnInit {
 				Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
 				]),
 			'skills': new FormArray([
-				new FormControl('MaterializeCSS', Validators.required),
-				new FormControl('Semantic UI', Validators.required),
-				new FormControl('Angular', Validators.required)
+				// new FormControl('MaterializeCSS', Validators.required),
+				// new FormControl('Semantic UI', Validators.required),
+				// new FormControl('Angular', Validators.required)
 				])
 		});
 	}
@@ -162,29 +162,24 @@ export class DataComponent implements OnInit {
 	}
 
 	addSkill(){
+		console.log(this.formExampleNestedObj.controls['skills'].value);
 		(<FormArray>this.formExampleNestedObj.controls['skills']).push(
-			new FormControl(this.skill, Validators.required)
+			new FormControl(this.skill)
 		);
 
 		console.log('Skill added!');
 
 		this.skill =null;
-		
-		console.log(this.formExampleNestedObj);
+		console.log(this.formExampleNestedObj.controls['skills'].value);
 	}
 
 	removeSkill(x){
-		console.log(x.value);
-		// console.log(this.formExampleNestedObj.controls['skills'].value[0]);
-
+	
 		for (var i = this.formExampleNestedObj.controls['skills'].value.length; i--;) {
-			if (this.formExampleNestedObj.controls['skills'].value[i] === x.value) {
-				this.formExampleNestedObj.controls['skills'].value.splice(i, 1);
+			if (this.formExampleNestedObj.controls['skills'].value[i] == x) {
+				(<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);
 			}
 		}
-		console.log(this.formExampleNestedObj.controls['skills'].value.length);
-		this.ngOnInit();
-		this.constructor();
 	}
 
 }
