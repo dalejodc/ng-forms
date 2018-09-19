@@ -23,7 +23,7 @@ export class DataComponent implements OnInit {
 	checkedBox: boolean=false;
 	skill:string;
 
-	// To use in formExampleNestedObj
+	// Object to use in formExampleNestedObj
 	user: Object = {
 		fullname:{
 			firstname: "First Name Example",
@@ -37,6 +37,7 @@ export class DataComponent implements OnInit {
 
 		console.log(this.user);
 		
+		// First example of form of data approximation
 		this.formExample = new FormGroup({
 			'name': new FormControl('', 
 				[
@@ -58,6 +59,7 @@ export class DataComponent implements OnInit {
 				)
 		});
 
+		// Second example of form of data approximation
 		this.formExampleNestedObj = new FormGroup({
 			'fullname' : new FormGroup({
 				'firstname': new FormControl('', 
@@ -77,9 +79,9 @@ export class DataComponent implements OnInit {
 				Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
 				]),
 			'skills': new FormArray([
-				// new FormControl('MaterializeCSS', Validators.required),
-				// new FormControl('Semantic UI', Validators.required),
-				// new FormControl('Angular', Validators.required)
+				new FormControl('MaterializeCSS'),
+				new FormControl('Semantic UI'),
+				new FormControl('Angular')
 				])
 		});
 	}
@@ -95,10 +97,19 @@ export class DataComponent implements OnInit {
 		});
 	}
 
+	
+	/*
+	getCountries()
+	This method get the countries of the simulated service to fill the select form
+	*/ 
 	getCountries(){
 		this.countries = this._countryService.getCountries();
 	}
 
+	/*
+	onCheckboxChange(event)
+	This method check the event checked or unchecked of the checkbox to accept the terms
+	*/
 	onCheckboxChange(event) {
 		if(event.target.checked) { 
 			this.errorMessage = false;
@@ -108,6 +119,10 @@ export class DataComponent implements OnInit {
 		}
 	}
 
+	/*
+	save()
+	This method simulates the submit of the form.
+	*/
 	save(){
 		if(this.formExample.valid && this.checkedBox){
 			this.successMessage = true;
@@ -137,11 +152,19 @@ export class DataComponent implements OnInit {
 		}
 	}
 
+	/*
+	close()
+	This method hide the success message of the simulated request
+	*/ 
 	close(){
 		this.successMessage = false;
 		this.successMessageNestedForm = false;
 	}
 
+	/*
+	saveNestedForm()
+	This method simulates the submit of the form of nested complex object.
+	*/
 	saveNestedForm(){
 		if(this.formExampleNestedObj.valid){
 			this.successMessageNestedForm = true;
@@ -161,6 +184,10 @@ export class DataComponent implements OnInit {
 		console.log(this.formExampleNestedObj);
 	}
 
+	/* 
+	addSkill()
+	This method add a skill in the array of skills of type FormArray with the method push(). 
+	*/
 	addSkill(){
 		console.log(this.formExampleNestedObj.controls['skills'].value);
 		(<FormArray>this.formExampleNestedObj.controls['skills']).push(
@@ -172,6 +199,12 @@ export class DataComponent implements OnInit {
 		this.skill =null;
 		console.log(this.formExampleNestedObj.controls['skills'].value);
 	}
+
+	/* 
+	removeSkill(skill)
+	This method compare de tag (x) to delete in the FormArray [skills]. It use removeAt(index) to delete
+	a element from the array.
+	*/
 
 	removeSkill(x){
 	
