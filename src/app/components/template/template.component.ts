@@ -16,6 +16,7 @@ export class TemplateComponent implements OnInit {
 
 	constructor(private _countriesServices:CountriesService) { }
 
+	// Object to use in formExampleNestedObj
 	user: Object={
 		name: null,
 		username: null,
@@ -42,6 +43,10 @@ export class TemplateComponent implements OnInit {
 		this.getCountries();
 	}
 
+	/*
+	save()
+	This method simulates the submit of the form. Optionaly could receive a parameter with the form
+	*/
 	save(tryForm?:NgForm){
 		console.log('Complete form:',tryForm);
 
@@ -74,6 +79,10 @@ export class TemplateComponent implements OnInit {
 		console.log(this.user);
 	}
 
+	/*
+	onCheckboxChange(event)
+	This method check the event checked or unchecked of the checkbox to accept the terms
+	*/
 	onCheckboxChange(event) {
 		if(event.target.checked) { 
 			console.log('Acepted');
@@ -84,10 +93,18 @@ export class TemplateComponent implements OnInit {
 		}
 	}
 
+	/*
+	close()
+	This method hide the success message of the simulated request
+	*/ 
 	close(){
 		this.successMessage = false;
 	}
 
+	/*
+	getCountries()
+	This method get the countries of the simulated service to fill the select form
+	*/ 
 	getCountries(){
 		this.countries = this._countriesServices.getCountries();
 
