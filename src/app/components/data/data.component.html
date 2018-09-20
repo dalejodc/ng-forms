@@ -159,7 +159,7 @@
 				</ul>
 			</div>
 
-			<div class="four wide field">
+			<div class="six wide field">
 				<label>Skills</label>
 				<div class="ui action input" formArrayName="skills">
 					<input type="text" placeholder="Add your skill..." [(ngModel)] ="skill" [ngModelOptions]="{standalone: true}">
@@ -179,7 +179,7 @@
 		</div>
 		
 		<div formArrayName="skills">
-			<a class="ui label" 
+			<a class="ui label animated zoomIn" 
 			*ngFor="let x of formExampleNestedObj.controls['skills'].value" 
 			>
 			{{x}}
