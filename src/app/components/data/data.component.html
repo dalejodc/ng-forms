@@ -178,11 +178,9 @@
 
 		</div>
 		
-		<div formArrayName="skills">
-			<a class="ui label animated zoomIn" 
-			*ngFor="let x of formExampleNestedObj.controls['skills'].value" 
-			>
-			{{x}}
+		<div formArrayName="skills" *ngFor="let x of formExampleNestedObj.controls['skills'].value; let i =index">
+			<a class="ui label animated zoomIn" id="{{i}}">
+			{{x}}{{i}}
 			<i class="delete icon" (click)="removeSkill(x)"></i>
 		</a>
 	</div>

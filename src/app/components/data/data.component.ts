@@ -220,7 +220,17 @@ export class DataComponent implements OnInit {
 
 		for (var i = this.formExampleNestedObj.controls['skills'].value.length; i--;) {
 			if (this.formExampleNestedObj.controls['skills'].value[i] == x) {
-				(<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);
+				// $("#2").removeClass( "zoomIn" ).addClass( "slideOutRight" );
+    			$(`\"#${i}\"`).removeClass( "zoomIn" ).addClass( "slideOutRight" );
+    			setTimeout(() =>{ 
+    				(<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);
+    			}, 3000);
+				
+				// let id= "\”#"+i+"\”;
+				// let id= `\"#${i}\"`;
+				// let id= `\"#0\"`;
+				 // var id = $(this).attr("id");
+				console.log(this.formExampleNestedObj.controls['skills'].value);
 			}
 		}
 	}
