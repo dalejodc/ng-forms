@@ -230,19 +230,11 @@ export class DataComponent implements OnInit {
 				element.classList.toggle("zoomOut");
 				
 				setTimeout( () => {
-					// console.log("hi");
 					(<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);
 					console.log(this.formExampleNestedObj.controls['skills'].value);
 				}, 2000);
 				break;
-				// (<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);
-
 			}
 		}
-	}
-
-
-	addClass(){
-		console.log(this.formExampleNestedObj.controls['skills'].value);
 	}
 }
