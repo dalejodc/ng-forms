@@ -70,7 +70,7 @@
 		<div class="ui center aligned three column grid">
 			<div class="field padding-check">
 				<div class="ui checkbox">
-					<input type="checkbox" tabindex="0" class="hidden" id="1" (change)="onCheckboxChange($event)">
+					<input type="checkbox" tabindex="0" class="hidden" (change)="onCheckboxChange($event)">
 					<label>I agree to the Terms and Conditions</label>
 				</div>
 				<div class="ui negative message" *ngIf="errorMessage">
@@ -178,12 +178,14 @@
 
 		</div>
 		
-		<div formArrayName="skills" *ngFor="let x of formExampleNestedObj.controls['skills'].value; let i =index">
-			<a class="ui label animated zoomIn" id="{{i}}">
-			{{x}}{{i}}
+
+		<div formArrayName="skills">
+			<a class="ui label animated zoomIn" 
+			*ngFor="let x of formExampleNestedObj.controls['skills'].value" id="{{x}}">
+			{{x}}
 			<i class="delete icon" (click)="removeSkill(x)"></i>
-		</a>
-	</div>
+			</a>
+		</div>
 	<br>
 	<div class="ui center aligned three column grid">
 		<div class="row">

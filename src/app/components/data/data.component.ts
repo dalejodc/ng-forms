@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
-import { CountriesService } from '../../services/countries.service'
+import { CountriesService } from '../../services/countries.service';
 
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-data',
@@ -220,19 +220,29 @@ export class DataComponent implements OnInit {
 
 		for (var i = this.formExampleNestedObj.controls['skills'].value.length; i--;) {
 			if (this.formExampleNestedObj.controls['skills'].value[i] == x) {
-				// $("#2").removeClass( "zoomIn" ).addClass( "slideOutRight" );
-    			$(`\"#${i}\"`).removeClass( "zoomIn" ).addClass( "slideOutRight" );
-    			setTimeout(() =>{ 
-    				(<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);
-    			}, 3000);
 				
-				// let id= "\”#"+i+"\”;
-				// let id= `\"#${i}\"`;
-				// let id= `\"#0\"`;
-				 // var id = $(this).attr("id");
-				console.log(this.formExampleNestedObj.controls['skills'].value);
+				console.log(x);
+				
+				
+				// JS
+				var element = document.getElementById(x);
+				console.log(element);
+				element.classList.toggle("zoomOut");
+				
+				setTimeout( () => {
+					// console.log("hi");
+					(<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);
+					console.log(this.formExampleNestedObj.controls['skills'].value);
+				}, 2000);
+				break;
+				// (<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);
+
 			}
 		}
 	}
 
+
+	addClass(){
+		console.log(this.formExampleNestedObj.controls['skills'].value);
+	}
 }
