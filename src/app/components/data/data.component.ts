@@ -85,13 +85,31 @@ export class DataComponent implements OnInit {
 				new FormControl('Semantic UI'),
 				new FormControl('Angular')
 				]),
-			'password1': new FormControl('', Validators.required),
-			'password2': new FormControl('', [Validators.required])
+			'password1': new FormControl('',Validators.required),
+			'password2': new FormControl('', 
+				[
+				// this.noEqual();
+				])
 		});
 
-	// this.formExampleNestedObj.controls["password2"].setValidators([Validators.required, this.noEqual]);
+	this.formExampleNestedObj.controls["password2"].setValidators([Validators.required, this.noEqual]);
+	
 	}
 
+	/*
+	noEqual()
+	This method is a custom validation form
+	*/ 
+	noEqual = (control:FormControl) => {
+		if(control.value !== this.formExampleNestedObj.controls["password1"].value) {
+			return {
+				differentpass: true
+			}
+		}
+		return null;
+	}
+
+	
 	ngOnInit() {
 		this.getCountries();
 
@@ -113,18 +131,6 @@ export class DataComponent implements OnInit {
 		return null;
 	}
 
-	/*
-	noEcual()
-	This method is a custom validation form
-	*/ 
-	noEqual = (control:FormControl) => {
-    if(control.value !== this.formExampleNestedObj.controls["password1"].value) {
-      return {
-        differentpass: true
-      }
-    }
-    return null;
-  }
 
 	
 	/*
