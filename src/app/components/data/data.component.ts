@@ -85,7 +85,7 @@ export class DataComponent implements OnInit {
 				new FormControl('Angular')
 				]),
 			'password1': new FormControl('', Validators.required),
-			'password2': new FormControl('', Validators.required)
+			'password2': new FormControl('', [Validators.required, this.noEqual])
 		});
 	}
 
@@ -98,6 +98,20 @@ export class DataComponent implements OnInit {
 			showConfirmButton: false,
 			timer: 3000
 		});
+	}
+
+	/*
+	noEcual()
+	This method is a custom validation form
+	*/ 
+	noEqual(control:FormControl):any{
+		// if(control.value !== this.formExampleNestedObj.controls['password1'].value){
+		// 	return {
+		// 		noEqual:true
+		// 	}
+		// }
+
+		return null;
 	}
 
 	
