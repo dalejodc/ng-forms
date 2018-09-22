@@ -103,47 +103,82 @@
 	<br>
 
 	<form class="ui form" (ngSubmit)="saveNestedForm()" [formGroup]="formExampleNestedObj">
-		<div class="required three fields" >
-			<div class="field">
-				<!-- The formGroupName must group the inputs -->
-				<div formGroupName ="fullname">
-					<label class="bold">Name</label>
-					<div class="two fields">
 
-						<!-- Input firstname -->
-						<div class="field">
-							<input type="text" formControlName="firstname" placeholder="First Name">
-						</div>
-						<!-- Error message for Firstname -->
-						<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['firstname'].valid && formExampleNestedObj.controls.fullname.controls['firstname'].touched)">
-							<div class="header">
-								Error in name field!
-							</div>
-							<ul>
-								<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.required">This field firstname is required</li>
-								<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
-							</ul>
-						</div>
-						
-						<!-- Input lastname -->
-						<div class="field">
-							<input type="text" formControlName="lastname" placeholder="Last Name">
-						</div>
-						<!-- Error message for Lastname -->
-						<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['lastname'].valid && formExampleNestedObj.controls.fullname.controls['lastname'].touched)">
-							<div class="header">
-								Error in name field!
-							</div>
-							<ul>
-								<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.required">This field lastname is required</li>
-								<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
-							</ul>
-						</div>
+		<div class="fields">
+			<!-- The formGroupName must group the inputs -->
+			<div formGroupName ="fullname" class="eight wide field">
+				<label class="bold">Name</label>
+				<div class="two fields">
 
+					<!-- Input firstname -->
+					<div class="field">
+						<input type="text" formControlName="firstname" placeholder="First Name">
+					</div>
+					<!-- Error message for Firstname -->
+					<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['firstname'].valid && formExampleNestedObj.controls.fullname.controls['firstname'].touched)">
+						<div class="header">
+							Error in name field!
+						</div>
+						<ul>
+							<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.required">This field firstname is required</li>
+							<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
+						</ul>
+					</div>
+
+					<!-- Input lastname -->
+					<div class="field">
+						<input type="text" formControlName="lastname" placeholder="Last Name">
+					</div>
+					<!-- Error message for Lastname -->
+					<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['lastname'].valid && formExampleNestedObj.controls.fullname.controls['lastname'].touched)">
+						<div class="header">
+							Error in name field!
+						</div>
+						<ul>
+							<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.required">This field lastname is required</li>
+							<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
+						</ul>
 					</div>
 				</div>
-			</div> 
+			</div>
+		
+			<div class="eight wide field">
+				<div class="field">
+					<label>Skills</label>
+					<div class="ui action input" formArrayName="skills">
+						<input type="text" placeholder="Add your skill..." [(ngModel)] ="skill" [ngModelOptions]="{standalone: true}">
+						<div class="ui green button" (click)="addSkill()" >Add</div> 
+					</div> 
+					<div class="ui negative message" *ngIf="errorMessageSkill">
+						<i class="close icon" (click)="closeSkillMessage()"></i>
+						<div class="header">
+							Error in skills field
+						</div>
+						<ul>
+							<li>You have to type something to add a skill</li>
+						</ul>
+					</div>    
+				</div>
+			</div>
+		</div>
 
+		<div class="ui grid">
+			<div class="right floated right aligned sixteen wide column">
+				<div formArrayName="skills" class="right aligned grid">
+					<a class="ui label animated zoomIn" 
+					*ngFor="let x of formExampleNestedObj.controls['skills'].value" id="{{x}}">
+					{{x}}
+					<i class="delete icon" (click)="removeSkill(x)"></i>
+				</a>
+			</div>
+			<br>
+		</div>
+	</div>
+
+		
+		
+		<div class="required two fields" >
+		
 			<div class="field">
 				<label>Email</label>
 				<input type="text" formControlName="email" placeholder="E-mail">
@@ -159,33 +194,18 @@
 				</ul>
 			</div>
 
-			<div class="six wide field">
-				<label>Skills</label>
-				<div class="ui action input" formArrayName="skills">
-					<input type="text" placeholder="Add your skill..." [(ngModel)] ="skill" [ngModelOptions]="{standalone: true}">
-					<div class="ui green button" (click)="addSkill()" >Add</div> 
-				</div> 
-				<div class="ui negative message" *ngIf="errorMessageSkill">
-					<i class="close icon" (click)="closeSkillMessage()"></i>
-					<div class="header">
-						Error in skills field
-					</div>
-					<ul>
-						<li>You have to type something to add a skill</li>
-					</ul>
-				</div>    
-			</div> 
-
+			<div class="field">
+				<label>Password</label>
+				<input type="text" formControlName="email" placeholder="E-mail">
+			</div>
+			<div class="field">
+				<label>Confirm assword</label>
+				<input type="text" formControlName="email" placeholder="E-mail">
+			</div>
 		</div>
 		
 
-		<div formArrayName="skills">
-			<a class="ui label animated zoomIn" 
-			*ngFor="let x of formExampleNestedObj.controls['skills'].value" id="{{x}}">
-			{{x}}
-			<i class="delete icon" (click)="removeSkill(x)"></i>
-			</a>
-		</div>
+		
 	<br>
 	<div class="ui center aligned three column grid">
 		<div class="row">
