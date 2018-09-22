@@ -220,6 +220,15 @@
 						<label>Confirm password</label>
 						<input type="password" formControlName="password2" placeholder="E-mail">
 					</div>
+					<!-- Error message for password 2 -->
+					<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.password2.valid && formExampleNestedObj.controls.password2.touched)">
+						<div class="header">
+							Error in password field!
+						</div>
+						<ul>
+							<li *ngIf="formExampleNestedObj.controls.password2.errors?.required">The confirm password field is required</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
