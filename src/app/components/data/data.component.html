@@ -14,7 +14,7 @@
 		<div class="three fields">
 			<div class="required field">
 				<div [ngClass]="{'field error': (formExample.controls['name'].touched && !formExample.controls['name'].valid)}">
-					<label class="bold">Name</label>
+					<label class="bold">Name <span class="req">*</span></label>
 					<input type="text" name="name" placeholder="Name" required formControlName="name">
 				</div>
 				<div class="ui negative message" *ngIf="(!formExample.controls['name'].valid && formExample.controls['name'].touched)">
@@ -104,64 +104,71 @@
 
 	<form class="ui form" (ngSubmit)="saveNestedForm()" [formGroup]="formExampleNestedObj">
 
-		<div class="fields">
-			<!-- The formGroupName must group the inputs -->
-			<div formGroupName ="fullname" class="eight wide field">
-				<label class="bold">Name</label>
-				<div class="two fields">
+		<div class="ui grid">
+			<div class="two column row">
+				<div class="column">
+					<!-- The formGroupName must group the inputs -->
+					<div formGroupName ="fullname" >
+						<label class="bold">Name <span class="req">*</span></label>
+						<div class="two fields">
 
-					<!-- Input firstname -->
-					<div class="field">
-						<input type="text" formControlName="firstname" placeholder="First Name">
-					</div>
-					<!-- Error message for Firstname -->
-					<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['firstname'].valid && formExampleNestedObj.controls.fullname.controls['firstname'].touched)">
-						<div class="header">
-							Error in name field!
-						</div>
-						<ul>
-							<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.required">This field firstname is required</li>
-							<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
-						</ul>
-					</div>
+							<!-- Input firstname -->
+							<div class="field">
+								<input type="text" formControlName="firstname" placeholder="First Name">
+							</div>
+							
 
-					<!-- Input lastname -->
-					<div class="field">
-						<input type="text" formControlName="lastname" placeholder="Last Name">
-					</div>
-					<!-- Error message for Lastname -->
-					<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['lastname'].valid && formExampleNestedObj.controls.fullname.controls['lastname'].touched)">
-						<div class="header">
-							Error in name field!
+							<!-- Input lastname -->
+							<div class="field">
+								<input type="text" formControlName="lastname" placeholder="Last Name">
+							</div>
+		
 						</div>
-						<ul>
-							<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.required">This field lastname is required</li>
-							<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
-						</ul>
+						<!-- Error message for Firstname -->
+							<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['firstname'].valid && formExampleNestedObj.controls.fullname.controls['firstname'].touched)">
+								<div class="header">
+									Error in Firstname field!
+								</div>
+								<ul>
+									<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.required">This field firstname is required</li>
+									<li *ngIf="formExampleNestedObj.controls.fullname.controls['firstname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
+								</ul>
+							</div>
+
+							<!-- Error message for Lastname -->
+							<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.fullname.controls['lastname'].valid && formExampleNestedObj.controls.fullname.controls['lastname'].touched)">
+								<div class="header">
+									Error in Lastname field!
+								</div>
+								<ul>
+									<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.required">This field lastname is required</li>
+									<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
+								</ul>
+							</div>
 					</div>
 				</div>
-			</div>
-		
-			<div class="eight wide field">
-				<div class="field">
-					<label>Skills</label>
-					<div class="ui action input" formArrayName="skills">
-						<input type="text" placeholder="Add your skill..." [(ngModel)] ="skill" [ngModelOptions]="{standalone: true}">
-						<div class="ui green button" (click)="addSkill()" >Add</div> 
-					</div> 
-					<div class="ui negative message" *ngIf="errorMessageSkill">
-						<i class="close icon" (click)="closeSkillMessage()"></i>
-						<div class="header">
-							Error in skills field
-						</div>
-						<ul>
-							<li>You have to type something to add a skill</li>
-						</ul>
-					</div>    
+				<div class="column">
+					<div class="field">
+						<label>Skills</label>
+						<div class="ui action input" formArrayName="skills">
+							<input type="text" placeholder="Add your skill..." [(ngModel)] ="skill" [ngModelOptions]="{standalone: true}">
+							<div class="ui green button" (click)="addSkill()" >Add</div> 
+						</div> 
+						<div class="ui negative message" *ngIf="errorMessageSkill">
+							<i class="close icon" (click)="closeSkillMessage()"></i>
+							<div class="header">
+								Error in skills field
+							</div>
+							<ul>
+								<li>You have to type something to add a skill</li>
+							</ul>
+						</div>    
+					</div>
 				</div>
 			</div>
 		</div>
 
+		
 		<div class="ui grid">
 			<div class="right floated right aligned sixteen wide column">
 				<div formArrayName="skills" class="right aligned grid">
@@ -169,58 +176,69 @@
 					*ngFor="let x of formExampleNestedObj.controls['skills'].value" id="{{x}}">
 					{{x}}
 					<i class="delete icon" (click)="removeSkill(x)"></i>
-				</a>
-			</div>
-			<br>
-		</div>
-	</div>
-
-		
-		
-		<div class="required two fields" >
-		
-			<div class="field">
-				<label>Email</label>
-				<input type="text" formControlName="email" placeholder="E-mail">
-			</div>
-			<!-- Error message for email -->
-			<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.email.valid && formExampleNestedObj.controls.email.touched)">
-				<div class="header">
-					Error in email field!
+					</a>
 				</div>
-				<ul>
-					<li *ngIf="formExampleNestedObj.controls.email.errors?.required">The email field is required</li>
-					<li *ngIf="formExampleNestedObj.controls.email.errors?.pattern">You have to write a valid email.</li>
-				</ul>
-			</div>
-
-			<div class="field">
-				<label>Password</label>
-				<input type="text" formControlName="email" placeholder="E-mail">
-			</div>
-			<div class="field">
-				<label>Confirm assword</label>
-				<input type="text" formControlName="email" placeholder="E-mail">
+				<br>
 			</div>
 		</div>
-		
 
-		
-	<br>
-	<div class="ui center aligned three column grid">
-		<div class="row">
-			<div class="column">
-				<button class="ui button green" type="submit" >Submit</button>
-				<!-- [disabled]="!formExampleNestedObj.valid" -->
+		<div class="ui grid">
+			<div class="three column row">
+				<div class="column">
+					<div class="required field">
+						<label>Email</label>
+						<input type="text" formControlName="email" placeholder="E-mail">
+					</div>
+					<!-- Error message for email -->
+					<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.email.valid && formExampleNestedObj.controls.email.touched)">
+						<div class="header">
+							Error in email field!
+						</div>
+						<ul>
+							<li *ngIf="formExampleNestedObj.controls.email.errors?.required">The email field is required</li>
+							<li *ngIf="formExampleNestedObj.controls.email.errors?.pattern">You have to write a valid email.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="column">
+					<div class="required field">
+						<label>Password</label>
+						<input type="password" formControlName="password1" placeholder="E-mail">
+					</div>
+					<!-- Error message for password 1 -->
+					<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.password1.valid && formExampleNestedObj.controls.password1.touched)">
+						<div class="header">
+							Error in password field!
+						</div>
+						<ul>
+							<li *ngIf="formExampleNestedObj.controls.password1.errors?.required">The password field is required</li>
+						</ul>
+					</div>
+				</div>
+				<div class="column">
+					<div class="required field">
+						<label>Confirm password</label>
+						<input type="password" formControlName="password2" placeholder="E-mail">
+					</div>
+				</div>
 			</div>
 		</div>
+
+		<div class="ui center aligned three column grid">
+			<div class="row">
+				<div class="column">
+					<button class="ui button green" type="submit" >Submit</button>
+					<!-- [disabled]="!formExampleNestedObj.valid" -->
+				</div>
+			</div>
+		</div>
+		{{formExampleNestedObj.valid}}
+	</form>
+	<div class="ui success message" *ngIf="successMessageNestedForm">
+		<i class="close icon" (click)="close()"></i>
+		<div class="header">
+			Your request was sent.
+		</div>
+		<p>The request could be sent until all the fields are correct.</p>
 	</div>
-</form>
-<div class="ui success message" *ngIf="successMessageNestedForm">
-	<i class="close icon" (click)="close()"></i>
-	<div class="header">
-		Your request was sent.
-	</div>
-	<p>The request could be sent until all the fields are correct.</p>
-</div>
 </div>	

@@ -83,7 +83,9 @@ export class DataComponent implements OnInit {
 				new FormControl('MaterializeCSS'),
 				new FormControl('Semantic UI'),
 				new FormControl('Angular')
-				])
+				]),
+			'password1': new FormControl('', Validators.required),
+			'password2': new FormControl('', Validators.required)
 		});
 	}
 
