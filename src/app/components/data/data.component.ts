@@ -71,7 +71,8 @@ export class DataComponent implements OnInit {
 				'lastname': new FormControl('', 
 					[
 					Validators.required,
-					Validators.pattern("[a-zA-Z\s]+")	
+					Validators.pattern("[a-zA-Z\s]+"),
+					this.noBatman	
 					]),
 			}),
 			'email': new FormControl('', 
@@ -85,8 +86,10 @@ export class DataComponent implements OnInit {
 				new FormControl('Angular')
 				]),
 			'password1': new FormControl('', Validators.required),
-			'password2': new FormControl('', [Validators.required, this.noEqual])
+			'password2': new FormControl('', [Validators.required])
 		});
+
+	// this.formExampleNestedObj.controls["password2"].setValidators([Validators.required, this.noEqual]);
 	}
 
 	ngOnInit() {
@@ -100,19 +103,28 @@ export class DataComponent implements OnInit {
 		});
 	}
 
+	noBatman(control: FormControl):{[s:string]:boolean}{
+		if(control.value==="Batman"){
+			return{
+				noDiaz:true
+			}
+		}
+
+		return null;
+	}
+
 	/*
 	noEcual()
 	This method is a custom validation form
 	*/ 
-	noEqual(control:FormControl):any{
-		// if(control.value !== this.formExampleNestedObj.controls['password1'].value){
-		// 	return {
-		// 		noEqual:true
-		// 	}
-		// }
-
-		return null;
-	}
+	noEqual = (control:FormControl) => {
+    if(control.value !== this.formExampleNestedObj.controls["password1"].value) {
+      return {
+        differentpass: true
+      }
+    }
+    return null;
+  }
 
 	
 	/*
@@ -190,6 +202,9 @@ export class DataComponent implements OnInit {
 	This method simulates the submit of the form of nested complex object.
 	*/
 	saveNestedForm(){
+
+		console.log("pss", this.formExampleNestedObj.controls['password1'].value);
+
 		if(this.formExampleNestedObj.valid){
 			this.successMessageNestedForm = true;
 			this.toast({
