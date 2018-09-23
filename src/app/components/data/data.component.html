@@ -120,11 +120,30 @@
 	<br>
 </div>
 
-<div class="ui container padding-title">
+<div class="ui container">
+	<div class="ui divider"></div>
+</div>
+
+<div class="ui container padding-form">
 	<h3 class="ui header">
 		Nested objects.
-		<div class="sub header">Nested and complex object in a form, using data approximation.</div>
+		<div class="sub header">The fourth example shows nested and complex object in a form, using data approximation as well.</div>
 	</h3>
+
+	<h3 class="ui header">Validations:</h3>
+	<ul class="ui list">
+		<li> <span class="bold">Name</span>
+			<ul class="ui">
+			<li><span class="bold">Firstname:</span> required, not numbers and just english characters.</li>
+			<li><span class="bold">Lastname:</span> required, not numbers and just english characters. Try typing Batman.</li>
+		</ul>
+		</li>
+		<li><span class="bold">Skills:</span> optional field. You may add/delete skills.</li>
+		<li><span class="bold">Email:</span> required, valid email. The email is checked to know if it is taken. Try typing hello@angular.com</li>
+		<li><span class="bold">Password 1:</span> required. Actually, without specific validation</li>
+		<li><span class="bold">Password 2:</span> required. Equal to the first password.</li>
+	</ul>
+	
 	<br>
 
 	<form class="ui form" (ngSubmit)="saveNestedForm()" [formGroup]="formExampleNestedObj">
@@ -168,6 +187,7 @@
 							<ul>
 								<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.required">This field lastname is required</li>
 								<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.pattern">You have to write a valid name, not numbers and just english characters.</li>
+								<li *ngIf="formExampleNestedObj.controls.fullname.controls['lastname'].errors?.noBatman">You can't use Batman as a Lastname</li>
 							</ul>
 						</div>
 					</div>
@@ -258,17 +278,18 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<br>
 	<div class="ui center aligned three column grid">
 		<div class="row">
 			<div class="column">
-				<button class="ui button green" type="submit" >Submit</button>
+				<button class="ui button green" type="submit" [disabled]="!formExampleNestedObj.valid">Submit</button>
 				<!-- [disabled]="!formExampleNestedObj.valid" -->
 			</div>
 		</div>
 	</div>
-	{{formExampleNestedObj.valid}}
-	{{formExampleNestedObj.status}}
+	<!-- {{formExampleNestedObj.valid}}
+	{{formExampleNestedObj.status}} -->
 </form>
 <div class="ui success message" *ngIf="successMessageNestedForm">
 	<i class="close icon" (click)="close()"></i>
