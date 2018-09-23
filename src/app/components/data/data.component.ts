@@ -96,18 +96,6 @@ export class DataComponent implements OnInit {
 	
 	}
 
-	/*
-	noEqual()
-	This method is a custom validation form
-	*/ 
-	noEqual = (control:FormControl) => {
-		if(control.value !== this.formExampleNestedObj.controls["password1"].value) {
-			return {
-				differentpass: true
-			}
-		}
-		return null;
-	}
 
 	
 	ngOnInit() {
@@ -121,6 +109,23 @@ export class DataComponent implements OnInit {
 		});
 	}
 
+	/*
+	noEqual()
+	This method is a custom validation form
+	*/ 
+	noEqual = (control:FormControl) => {
+		if(control.value !== this.formExampleNestedObj.controls["password1"].value) {
+			return {
+				differentpass: true
+			}
+		}
+		return null;
+	}
+
+	/*
+	noBatman()
+	This method is a custom validation form, don't let you type 'Batman' in the lastname input
+	*/ 
 	noBatman(control: FormControl):{[s:string]:boolean}{
 		if(control.value==="Batman"){
 			return{
