@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { CountriesService } from '../../services/countries.service';
 
@@ -65,21 +66,27 @@ export class DataComponent implements OnInit {
 			'fullname' : new FormGroup({
 				'firstname': new FormControl('', 
 					[
-					Validators.required,
-					Validators.pattern("[a-zA-Z\s]+")	
+						Validators.required,
+						Validators.pattern("[a-zA-Z\s]+")	
 					]),
 				'lastname': new FormControl('', 
 					[
-					Validators.required,
-					Validators.pattern("[a-zA-Z\s]+"),
-					this.noBatman	
+						Validators.required,
+						Validators.pattern("[a-zA-Z\s]+"),
+						this.noBatman	
 					]),
 			}),
 			'email': new FormControl('', 
 				[
-				Validators.required, 
-				Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
-				]),
+					// sync
+					Validators.required, 
+					Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
+				],
+				[
+					// async
+					this.emailTaken
+				]
+				),
 			'skills': new FormArray([
 				new FormControl('MaterializeCSS'),
 				new FormControl('Semantic UI'),
@@ -110,6 +117,31 @@ export class DataComponent implements OnInit {
 	}
 
 	/*
+	emailTaken()
+	This function check if the email is taken
+	*/
+	emailTaken(control:FormControl): Promise<any> | Observable<any>{
+
+		console.log("outside");
+
+		let promise = new Promise(
+			(resolve, reject)=>{
+				setTimeout(()=>{
+					if(control.value === "hello@angular.com"){
+						console.log("exists");
+						resolve({exists:true})
+					}else{
+						resolve(null)
+						console.log("It doesn't exists");
+					}
+				}, 1000)
+			}
+		)
+
+		return promise;
+	}
+
+	/*
 	noEqual()
 	This method is a custom validation form
 	*/ 
@@ -129,7 +161,7 @@ export class DataComponent implements OnInit {
 	noBatman(control: FormControl):{[s:string]:boolean}{
 		if(control.value==="Batman"){
 			return{
-				noDiaz:true
+				noBatman:true
 			}
 		}
 

@@ -197,6 +197,7 @@
 						<ul>
 							<li *ngIf="formExampleNestedObj.controls.email.errors?.required">The email field is required</li>
 							<li *ngIf="formExampleNestedObj.controls.email.errors?.pattern">You have to write a valid email.</li>
+							<li *ngIf="formExampleNestedObj.controls.email.errors?.exists">This email address is already used.</li>
 						</ul>
 					</div>
 				</div>
@@ -242,6 +243,7 @@
 			</div>
 		</div>
 		{{formExampleNestedObj.valid}}
+		{{formExampleNestedObj.status}}
 	</form>
 	<div class="ui success message" *ngIf="successMessageNestedForm">
 		<i class="close icon" (click)="close()"></i>
