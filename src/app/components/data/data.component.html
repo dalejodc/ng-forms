@@ -31,10 +31,19 @@
 
 			<div class="required field">
 				<label>Country</label>
-				<select name="country" formControlName="country">
+				<select name="country" formControlName="country" required="">
 					<option value="">Select your country</option>
 					<option *ngFor="let x of countries" value="x.id" >{{x.name}}</option>
 				</select>
+
+				<div class="ui negative message" *ngIf="(!formExample.controls['country'].valid && formExample.controls['country'].touched)">
+					<div class="header">
+						Error in country field!
+					</div>
+					<ul>
+						<li *ngIf="formExample.controls['country'].errors?.required">Select a contry</li>
+					</ul>
+				</div>
 			</div>
 
 			<div class="required field">

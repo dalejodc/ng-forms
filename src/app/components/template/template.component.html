@@ -6,7 +6,7 @@
 		<div class="sub header">Template aproximation</div>
 	</h1>
 	<br>
-	<p>The second example shows a validated form. You must write the correct text in the fields, and the form must be sent. If the text is not correct, the form can not be sent.</p>
+	<p><span class="bold">Indications:</span> The second example shows a validated form. You must write the correct text in the fields, and the form must be sent. If the text is not correct, the form can not be sent.</p>
 	<br>
 	<form  (ngSubmit)="save(tryForm)" #tryForm="ngForm" class="ui form">
 
@@ -55,7 +55,7 @@
 					</div>
 					<ul>
 						<li *ngIf="username.errors?.required">This field is required</li>
-						<li *ngIf="username.errors?.minlength"> Min length {{name.errors?.minlength.requiredLength}}</li>
+						<li *ngIf="username.errors?.minlength"> Min length is 3</li>
 					</ul>
 				</div>
 			</div>
