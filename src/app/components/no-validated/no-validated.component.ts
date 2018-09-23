@@ -16,7 +16,7 @@ declare var $:any;
 export class NoValidatedComponent implements OnInit {
 
 	// Object to use in the form
-	user: Object={
+	user:Object={
 		name: null,
 		username: null,
 		email:null,
@@ -40,7 +40,6 @@ export class NoValidatedComponent implements OnInit {
 		});
 
 		this.getCountries();
-
 	}
 
 	/*

@@ -103,7 +103,7 @@ export class DataComponent implements OnInit {
 	
 	}
 
-
+	// get formData() { return <FormArray>this.passwordForm.get('Data'); }
 	
 	ngOnInit() {
 		this.getCountries();
