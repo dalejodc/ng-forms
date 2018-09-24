@@ -39,6 +39,7 @@ export class DataComponent implements OnInit {
 		email: "email@example.com",
 		skills: 
 		[
+		"Scrum",
 		"MateriallizeCSS", 
 		"Scrum", 
 		"RUP", 
@@ -110,6 +111,7 @@ export class DataComponent implements OnInit {
 					]
 					),
 			'skills': new FormArray([
+				new FormControl('Scrum'),
 				new FormControl('MaterializeCSS'),
 				new FormControl('Semantic UI'),
 				new FormControl('Angular')
