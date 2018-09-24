@@ -28,7 +28,7 @@ export class DataComponent implements OnInit {
 
 
 	isCodeVisible:boolean = false;
-	codeObjectMessage:string ="See object"
+	codeObjectMessage:string ="See the object."
 
 	obj = `
 	{
