@@ -26,6 +26,23 @@ export class DataComponent implements OnInit {
 	checkedBox: boolean=false;
 	skill:string;
 
+	obj = `
+	{
+		fullname:{ 
+			firstname: "First Name",
+			lastname: "Last Name"
+		},
+		email: "email@example.com",
+		skills: 
+			[
+				"MateriallizeCSS", 
+				"Scrum", 
+				"RUP", 
+				"Angular"
+			],
+		password: "yoUrP4ss"
+	}`;
+
 	// Object to use in formExampleNestedObj
 	user: Object = {
 		fullname:{

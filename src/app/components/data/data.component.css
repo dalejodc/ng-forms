@@ -12,3 +12,22 @@
 	padding-top: 50px;
 	padding-bottom: 100px;
 }
+
+#code{
+	background-color: #eee;
+}
+
+pre{
+	font-family: Consolas;
+	margin-bottom: 10px;
+	overflow: auto;
+	width: auto;
+	padding: 5px;
+	background-color: #eee;
+	width: 650px!ie7;
+	padding-bottom: 20px!ie7;
+	max-height: 700px;
+}
+blockquote {
+	border-left: 10px solid #003C1E;
+}

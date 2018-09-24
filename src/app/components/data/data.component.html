@@ -127,16 +127,22 @@
 <div class="ui container padding-form">
 	<h3 class="ui header">
 		Nested objects.
-		<div class="sub header">The fourth example shows nested and complex object in a form, using data approximation as well.</div>
+		<div class="sub header">The fourth example shows nested and complex object in a form, using data approximation as well. <a href="">See object</a> </div>
 	</h3>
+	
+	<div class="ui segment" id="code">
+		<pre>
+			<code>{{obj}}</code>
+		</pre>
+	</div>
 
 	<h3 class="ui header">Validations:</h3>
 	<ul class="ui list">
 		<li> <span class="bold">Name</span>
 			<ul class="ui">
-			<li><span class="bold">Firstname:</span> required, not numbers and just english characters.</li>
-			<li><span class="bold">Lastname:</span> required, not numbers and just english characters. Try typing Batman.</li>
-		</ul>
+				<li><span class="bold">Firstname:</span> required, not numbers and just english characters.</li>
+				<li><span class="bold">Lastname:</span> required, not numbers and just english characters. Try typing Batman.</li>
+			</ul>
 		</li>
 		<li><span class="bold">Skills:</span> optional field. You may add/delete skills.</li>
 		<li><span class="bold">Email:</span> required, valid email. The email is checked to know if it is taken. Try typing hello@angular.com</li>
@@ -295,13 +301,13 @@
 		</div>
 	</div>
 	<!-- {{formExampleNestedObj.valid}}
-	{{formExampleNestedObj.status}} -->
-</form>
-<div class="ui success message" *ngIf="successMessageNestedForm">
-	<i class="close icon" (click)="close()"></i>
-	<div class="header">
-		Your request was sent.
+		{{formExampleNestedObj.status}} -->
+	</form>
+	<div class="ui success message" *ngIf="successMessageNestedForm">
+		<i class="close icon" (click)="close()"></i>
+		<div class="header">
+			Your request was sent.
+		</div>
+		<p>The request could be sent until all the fields are correct.</p>
 	</div>
-	<p>The request could be sent until all the fields are correct.</p>
-</div>
 </div>	
