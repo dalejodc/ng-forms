@@ -140,7 +140,7 @@
 		</li>
 		<li><span class="bold">Skills:</span> optional field. You may add/delete skills.</li>
 		<li><span class="bold">Email:</span> required, valid email. The email is checked to know if it is taken. Try typing hello@angular.com</li>
-		<li><span class="bold">Password 1:</span> required. Actually, without specific validation</li>
+		<li><span class="bold">Password 1:</span> required. At least an uppercase, lowercase, a number, min length 5. Try typing aA1aa</li>
 		<li><span class="bold">Password 2:</span> required. Equal to the first password.</li>
 	</ul>
 	
@@ -251,7 +251,7 @@
 			<div class="column">
 				<div class="required field">
 					<label>Password</label>
-					<input type="password" formControlName="password1" placeholder="E-mail">
+					<input type="password" formControlName="password1" placeholder="Password">
 				</div>
 				<!-- Error message for password 1 -->
 				<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.password1.valid && formExampleNestedObj.controls.password1.touched)">
@@ -260,13 +260,15 @@
 					</div>
 					<ul>
 						<li *ngIf="formExampleNestedObj.controls.password1.errors?.required">The password field is required</li>
+						<li *ngIf="formExampleNestedObj.controls.password1.errors?.badPattern">You must type at least an uppercase, lowercase and a number.</li>
+						<li *ngIf="formExampleNestedObj.controls.password1.errors?.minlength">Min length is {{formExampleNestedObj.controls.password1.errors?.minlength.requiredLength}}</li>
 					</ul>
 				</div>
 			</div>
 			<div class="column">
 				<div class="required field">
 					<label>Confirm password</label>
-					<input type="password" formControlName="password2" placeholder="E-mail">
+					<input type="password" formControlName="password2" placeholder="Confirm password">
 				</div>
 				<!-- Error message for password 2 -->
 				<div class="ui negative message" *ngIf="(!formExampleNestedObj.controls.password2.valid && formExampleNestedObj.controls.password2.touched)">

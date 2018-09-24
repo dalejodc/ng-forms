@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
+import { PasswordValidator } from '../../validators/password.validator';
 import { CountriesService } from '../../services/countries.service';
 
 import swal from 'sweetalert2';
@@ -92,7 +93,13 @@ export class DataComponent implements OnInit {
 				new FormControl('Semantic UI'),
 				new FormControl('Angular')
 				]),
-			'password1': new FormControl('',Validators.required),
+			'password1': new FormControl('',
+				[
+					Validators.required, 
+					PasswordValidator.strong, 
+					Validators.minLength(5)
+				]
+				),
 			'password2': new FormControl('', 
 				[
 				// this.noEqual();
@@ -122,17 +129,16 @@ export class DataComponent implements OnInit {
 	*/
 	emailTaken(control:FormControl): Promise<any> | Observable<any>{
 
-		console.log("outside");
 
 		let promise = new Promise(
 			(resolve, reject)=>{
 				setTimeout(()=>{
 					if(control.value === "hello@angular.com"){
-						console.log("exists");
+						// console.log("exists");
 						resolve({exists:true})
 					}else{
 						resolve(null)
-						console.log("It doesn't exists");
+						// console.log("It doesn't exists");
 					}
 				}, 1000)
 			}
@@ -245,8 +251,6 @@ export class DataComponent implements OnInit {
 	This method simulates the submit of the form of nested complex object.
 	*/
 	saveNestedForm(){
-
-		console.log("pss", this.formExampleNestedObj.controls['password1'].value);
 
 		if(this.formExampleNestedObj.valid){
 			this.successMessageNestedForm = true;
