@@ -31,3 +31,8 @@ pre{
 blockquote {
 	border-left: 10px solid #003C1E;
 }
+
+#link {
+	color: #4183C4;
+	cursor: pointer;
+}

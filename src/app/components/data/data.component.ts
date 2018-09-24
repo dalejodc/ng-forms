@@ -26,6 +26,10 @@ export class DataComponent implements OnInit {
 	checkedBox: boolean=false;
 	skill:string;
 
+
+	isCodeVisible:boolean = false;
+	codeObjectMessage:string ="See object"
+
 	obj = `
 	{
 		fullname:{ 
@@ -34,12 +38,12 @@ export class DataComponent implements OnInit {
 		},
 		email: "email@example.com",
 		skills: 
-			[
-				"MateriallizeCSS", 
-				"Scrum", 
-				"RUP", 
-				"Angular"
-			],
+		[
+		"MateriallizeCSS", 
+		"Scrum", 
+		"RUP", 
+		"Angular"
+		],
 		password: "yoUrP4ss"
 	}`;
 
@@ -84,14 +88,14 @@ export class DataComponent implements OnInit {
 			'fullname' : new FormGroup({
 				'firstname': new FormControl('', 
 					[
-						Validators.required,
-						Validators.pattern("[a-zA-Z\s]+")	
+					Validators.required,
+					Validators.pattern("[a-zA-Z\s]+")	
 					]),
 				'lastname': new FormControl('', 
 					[
-						Validators.required,
-						Validators.pattern("[a-zA-Z\s]+"),
-						this.noBatman	
+					Validators.required,
+					Validators.pattern("[a-zA-Z\s]+"),
+					this.noBatman	
 					]),
 			}),
 			'email': new FormControl('', 
@@ -99,12 +103,12 @@ export class DataComponent implements OnInit {
 					// sync
 					Validators.required, 
 					Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
-				],
-				[
+					],
+					[
 					// async
 					this.emailTaken
-				]
-				),
+					]
+					),
 			'skills': new FormArray([
 				new FormControl('MaterializeCSS'),
 				new FormControl('Semantic UI'),
@@ -112,9 +116,9 @@ export class DataComponent implements OnInit {
 				]),
 			'password1': new FormControl('',
 				[
-					Validators.required, 
-					PasswordValidator.strong, 
-					Validators.minLength(5)
+				Validators.required, 
+				PasswordValidator.strong, 
+				Validators.minLength(5)
 				]
 				),
 			'password2': new FormControl('', 
@@ -123,8 +127,8 @@ export class DataComponent implements OnInit {
 				])
 		});
 
-	this.formExampleNestedObj.controls["password2"].setValidators([Validators.required, this.noEqual]);
-	
+		this.formExampleNestedObj.controls["password2"].setValidators([Validators.required, this.noEqual]);
+
 	}
 
 	// get formData() { return <FormArray>this.passwordForm.get('Data'); }
@@ -159,7 +163,7 @@ export class DataComponent implements OnInit {
 					}
 				}, 1000)
 			}
-		)
+			)
 
 		return promise;
 	}
@@ -327,9 +331,30 @@ export class DataComponent implements OnInit {
 				setTimeout( () => {
 					(<FormArray>this.formExampleNestedObj.controls['skills']).removeAt(i);
 					console.log(this.formExampleNestedObj.controls['skills'].value);
-				}, 2000);
+				}, 1000);
 				break;
 			}
+		}
+	}
+
+	displayCodeObject(){
+
+		if(!this.isCodeVisible){
+			this.codeObjectMessage = "Hide object"
+			this.isCodeVisible = true;
+
+		}else{
+			var element = document.getElementById("code");
+			console.log(element);
+			element.classList.remove("fadeInRight");
+			element.classList.toggle("fadeOutLeft");
+
+			this.codeObjectMessage = "See object"
+			
+			setTimeout( () => {
+				this.isCodeVisible = false;
+			}, 600);
+			
 		}
 	}
 }

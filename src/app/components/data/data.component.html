@@ -127,10 +127,11 @@
 <div class="ui container padding-form">
 	<h3 class="ui header">
 		Nested objects.
-		<div class="sub header">The fourth example shows nested and complex object in a form, using data approximation as well. <a href="">See object</a> </div>
+		<div class="sub header">The fourth example shows nested and complex object in a form, using data approximation as well. 
+			<span id="link" (click)="displayCodeObject()">{{codeObjectMessage}}</span> </div>
 	</h3>
 	
-	<div class="ui segment" id="code">
+	<div class="ui segment animated fadeInRight" id="code" *ngIf="isCodeVisible">
 		<pre>
 			<code>{{obj}}</code>
 		</pre>
