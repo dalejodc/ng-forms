@@ -24,3 +24,7 @@ h3.ui.header .sub.header {
 .italic{
 	font-style: italic;
 }
+
+#preloader{
+	margin-top: 650px;
+}
