@@ -131,6 +131,11 @@ export class DataComponent implements OnInit {
 
 		this.formExampleNestedObj.controls["password2"].setValidators([Validators.required, this.noEqual]);
 
+		this.formExampleNestedObj.controls['fullname'].valueChanges
+			.subscribe(data=>{
+				console.log(data)
+			});
+
 	}
 
 	// get formData() { return <FormArray>this.passwordForm.get('Data'); }
