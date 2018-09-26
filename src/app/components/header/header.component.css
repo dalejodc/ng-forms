@@ -17,9 +17,19 @@
 	color: white;
 }
 
+#title[_ngcontent-c2]{
+    color: white;
+    font-size: 60px;
+}
+
 p{
 	font-size: 25px;
 	font-weight: 200;
+}
+
+p[_ngcontent-c2] {
+    font-size: 19px;
+    font-weight: 200;
 }
 
 
