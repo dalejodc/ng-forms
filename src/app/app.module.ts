@@ -10,6 +10,7 @@ import { TemplateComponent } from './components/template/template.component';
 import { DataComponent } from './components/data/data.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NoValidatedComponent } from './components/no-validated/no-validated.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NoValidatedComponent } from './components/no-validated/no-validated.com
     TemplateComponent,
     DataComponent,
     HeaderComponent,
-    NoValidatedComponent
+    NoValidatedComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
